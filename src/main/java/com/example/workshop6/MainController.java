@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
@@ -49,17 +50,32 @@ public class MainController {
     @FXML // fx:id="tab1"
     private Tab tab1; // Value injected by FXMLLoader
 
+    @FXML // fx:id="lvCustomers"
+    private ListView<?> lvCustomers; // Value injected by FXMLLoader
+
     @FXML // fx:id="tab2"
     private Tab tab2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="lvBookings"
+    private ListView<?> lvBookings; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab3"
     private Tab tab3; // Value injected by FXMLLoader
 
+    @FXML // fx:id="lvPackages"
+    private ListView<?> lvPackages; // Value injected by FXMLLoader
+
     @FXML // fx:id="tab4"
     private Tab tab4; // Value injected by FXMLLoader
 
+    @FXML // fx:id="lvProducts"
+    private ListView<?> lvProducts; // Value injected by FXMLLoader
+
     @FXML // fx:id="tab5"
     private Tab tab5; // Value injected by FXMLLoader
+
+    @FXML // fx:id="lvInvoices"
+    private ListView<?> lvInvoices; // Value injected by FXMLLoader
 
     @FXML
     void btnBookings_OnClick(ActionEvent event) {
@@ -114,10 +130,15 @@ public class MainController {
         assert tpMain != null : "fx:id=\"tpMain\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab0 != null : "fx:id=\"tab0\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab1 != null : "fx:id=\"tab1\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lvCustomers != null : "fx:id=\"lvCustomers\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab2 != null : "fx:id=\"tab2\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lvBookings != null : "fx:id=\"lvBookings\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab3 != null : "fx:id=\"tab3\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lvPackages != null : "fx:id=\"lvPackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab4 != null : "fx:id=\"tab4\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lvProducts != null : "fx:id=\"lvProducts\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab5 != null : "fx:id=\"tab5\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lvInvoices != null : "fx:id=\"lvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
 
 
     }

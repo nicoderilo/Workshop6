@@ -109,7 +109,7 @@
                            <children>
                               <HBox prefHeight="160.0" prefWidth="922.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers" textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -117,7 +117,7 @@
                                           <Insets left="70.0" top="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #66ccff;" text="Bookings" textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #66ccff;" text="Bookings 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -125,7 +125,7 @@
                                           <Insets left="35.0" top="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #00e6e6;" text="Packages" textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #00e6e6;" text="Packages 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -133,7 +133,7 @@
                                           <Insets left="35.0" top="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #ff9999;" text="Invoices " textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #ff9999;" text="Invoices 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -164,7 +164,7 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <ListView layoutX="254.0" layoutY="86.0" prefHeight="297.0" prefWidth="924.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                          <ListView fx:id="lvCustomers" layoutX="254.0" layoutY="86.0" prefHeight="297.0" prefWidth="924.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                                           <Label layoutX="348.0" layoutY="14.0" text="CUSTOMERS" />
                                           <Button layoutX="215.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
@@ -189,7 +189,7 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <ListView layoutX="69.0" layoutY="68.0" prefHeight="251.0" prefWidth="928.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                          <ListView fx:id="lvBookings" layoutX="69.0" layoutY="68.0" prefHeight="251.0" prefWidth="928.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                                           <Button layoutX="213.0" layoutY="297.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
@@ -214,7 +214,7 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <ListView layoutX="254.0" layoutY="75.0" prefHeight="261.0" prefWidth="928.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                          <ListView fx:id="lvPackages" layoutX="254.0" layoutY="75.0" prefHeight="261.0" prefWidth="928.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                                           <Button layoutX="197.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
@@ -239,7 +239,7 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <ListView layoutX="227.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                          <ListView fx:id="lvProducts" layoutX="227.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                                           <Label layoutX="359.0" layoutY="14.0" text="Products" />
                                           <Button layoutX="195.0" layoutY="295.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
@@ -264,7 +264,7 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <ListView layoutX="227.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                          <ListView fx:id="lvInvoices" layoutX="227.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                                           <Label layoutX="359.0" layoutY="14.0" text="Invoices" />
                                           <Button layoutX="198.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
