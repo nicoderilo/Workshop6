@@ -1,6 +1,6 @@
-/**
- * Sample Skeleton for 'main-view.fxml' Controller Class
- * test commit/push by enzel troy oct 4 5:51pm
+/*
+  Sample Skeleton for 'main-view.fxml' Controller Class
+  test commit/push by enzel troy oct 4 5:54pm
  */
 
 package com.example.workshop6;
