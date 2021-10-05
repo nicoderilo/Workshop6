@@ -4,8 +4,15 @@
 
 package com.example.workshop6;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
+import java.util.Properties;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +21,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class MainController {
@@ -73,43 +81,43 @@ public class MainController {
     private Button btnDeleteCustomers; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvCustomers"
-    private TableView<?> tvCustomers; // Value injected by FXMLLoader
+    private TableView<Customer> tvCustomers; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustomerId"
-    private TableColumn<?, ?> colCustomerId; // Value injected by FXMLLoader
+    private TableColumn<Customer, Integer> colCustomerId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustFirstName"
-    private TableColumn<?, ?> colCustFirstName; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustFirstName; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustLastName"
-    private TableColumn<?, ?> colCustLastName; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustLastName; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustAddress"
-    private TableColumn<?, ?> colCustAddress; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustAddress; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustCity"
-    private TableColumn<?, ?> colCustCity; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustCity; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustProv"
-    private TableColumn<?, ?> colCustProv; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustProv; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustPostal"
-    private TableColumn<?, ?> colCustPostal; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustPostal; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustCountry"
-    private TableColumn<?, ?> colCustCountry; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustCountry; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustHomePhone"
-    private TableColumn<?, ?> colCustHomePhone; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustHomePhone; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustBusPhone"
-    private TableColumn<?, ?> colCustBusPhone; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustBusPhone; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustEmail"
-    private TableColumn<?, ?> colCustEmail; // Value injected by FXMLLoader
+    private TableColumn<Customer, String> colCustEmail; // Value injected by FXMLLoader
 
     @FXML // fx:id="colAgentId"
-    private TableColumn<?, ?> colAgentId; // Value injected by FXMLLoader
+    private TableColumn<Customer, Integer> colAgentId; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab2"
     private Tab tab2; // Value injected by FXMLLoader
@@ -244,10 +252,6 @@ public class MainController {
 
     }
 
-    @FXML
-    void btnBookings_OnClick(ActionEvent event) {
-
-    }
 
     @FXML
     void btnDeleteBookings_OnClick(ActionEvent event) {
@@ -301,22 +305,32 @@ public class MainController {
 
     @FXML
     void btnHome_OnClick(ActionEvent event) {
-
+        tpMain.getSelectionModel().select(tab0);
     }
-
     @FXML
-    void btnInvoices_OnClick(ActionEvent event) {
-
+    void btnCustomers_OnClick(ActionEvent event) {
+        tpMain.getSelectionModel().select(tab1);
     }
-
+    @FXML
+    void btnBookings_OnClick(ActionEvent event) {
+        tpMain.getSelectionModel().select(tab2);
+    }
     @FXML
     void btnPackages_OnClick(ActionEvent event) {
-
+        tpMain.getSelectionModel().select(tab3);
     }
     @FXML
     void btnProducts_OnClick(ActionEvent event) {
-
+        tpMain.getSelectionModel().select(tab4);
     }
+    @FXML
+    void btnInvoices_OnClick(ActionEvent event) {
+        tpMain.getSelectionModel().select(tab5);
+    }
+
+
+    private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
+
     //HOVERS EFFECTS - START
     @FXML
     void btnBookings_OnEntered(MouseEvent event) {
@@ -446,6 +460,50 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
+       // getCustomers();
 
     }
+
+    /*private void getCustomers() {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from customers");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println(rsmd.getColumnCount());
+            while (rs.next())
+            {
+                CustomerData.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
+                colCustomerId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("agentId"));
+                colCustFirstName.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtFirstName"));
+                colCustLastName.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtMiddleInitial"));
+                colCustAddress.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtLastName"));
+                colCustCity.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtBusPhone"));
+                colCustProv.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtEmail"));
+                colCustPostal.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
+                colCustCountry.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
+                colCustHomePhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
+                colCustBusPhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
+                colCustEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
+                colAgentId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("agencyId"));
+                tvCustomers.setItems(CustomerData);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//getCustomers - End*/
 }
