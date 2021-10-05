@@ -214,12 +214,107 @@ public class MainController {
     private TableView<?> tvInvoices; // Value injected by FXMLLoader
 
     @FXML
+    void btnAddBookings_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnAddCustomers_Onclick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnAddInvoices_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnAddPackages_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnAddProducts_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnBookings_OnClick(ActionEvent event) {
 
     }
 
     @FXML
-    void btnCustomers_OnClick(ActionEvent event) {
+    void btnBookings_OnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnBookings_OnExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnCustomerrs_OnExit(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnCustomers_OnEn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCustomers_OnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnDeleteBookings_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDeleteCustomers_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDeleteInvoices_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDeletePackages_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDeleteProducts_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditBookings_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditCustomers_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditInvoices_OncClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditPackages_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEditProducts_OnClick(ActionEvent event) {
 
     }
 
@@ -239,6 +334,16 @@ public class MainController {
     }
 
     @FXML
+    void btnInvoice_OnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnInvoice_OnExited(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnInvoices_OnClick(ActionEvent event) {
 
     }
@@ -249,7 +354,27 @@ public class MainController {
     }
 
     @FXML
+    void btnPackages_OnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnPackages_OnExited(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnProducts_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnProducts_OnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnProducts_OnExited(MouseEvent event) {
 
     }
 

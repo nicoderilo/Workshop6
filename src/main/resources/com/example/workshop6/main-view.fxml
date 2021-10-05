@@ -57,7 +57,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#btnCustomers_OnClick" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="CUSTOMERS" textFill="#ebebeb">
+                              <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#btnCustomers_OnEn" onMouseEntered="#btnCustomers_OnEntered" onMouseExited="#btnCustomerrs_OnExit" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="CUSTOMERS" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -66,7 +66,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnBookings" mnemonicParsing="false" onAction="#btnBookings_OnClick" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="BOOKINGS" textFill="#ebebeb">
+                              <Button fx:id="btnBookings" mnemonicParsing="false" onAction="#btnBookings_OnClick" onMouseEntered="#btnBookings_OnEntered" onMouseExited="#btnBookings_OnExited" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="BOOKINGS" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -75,7 +75,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnPackages" mnemonicParsing="false" onAction="#btnPackages_OnClick" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="PACKAGES" textFill="#ebebeb">
+                              <Button fx:id="btnPackages" mnemonicParsing="false" onAction="#btnPackages_OnClick" onMouseEntered="#btnPackages_OnEntered" onMouseExited="#btnPackages_OnExited" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="PACKAGES" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -84,7 +84,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnProducts" mnemonicParsing="false" onAction="#btnProducts_OnClick" prefHeight="82.0" prefWidth="211.0" style="-fx-background-color: #0086b3;" text="PRODUCTS" textFill="#ebebeb">
+                              <Button fx:id="btnProducts" mnemonicParsing="false" onAction="#btnProducts_OnClick" onMouseEntered="#btnProducts_OnEntered" onMouseExited="#btnProducts_OnExited" prefHeight="82.0" prefWidth="211.0" style="-fx-background-color: #0086b3;" text="PRODUCTS" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -93,7 +93,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnInvoices" mnemonicParsing="false" onAction="#btnInvoices_OnClick" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="INVOICES" textFill="#ebebeb">
+                              <Button fx:id="btnInvoices" mnemonicParsing="false" onAction="#btnInvoices_OnClick" onMouseEntered="#btnInvoice_OnEntered" onMouseExited="#btnInvoice_OnExited" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="INVOICES" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -166,17 +166,17 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
                                           <Label layoutX="348.0" layoutY="14.0" text="CUSTOMERS" />
-                                          <Button fx:id="btnAddCustomers" layoutX="215.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddCustomers" layoutX="215.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddCustomers_Onclick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditCustomers" layoutX="363.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditCustomers" layoutX="363.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteCustomers" layoutX="509.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteCustomers" layoutX="509.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeleteCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -205,17 +205,17 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Button fx:id="btnAddBookings" layoutX="213.0" layoutY="297.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddBookings" layoutX="213.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnAddBookings_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditBookings" layoutX="370.0" layoutY="297.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditBookings" layoutX="370.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnEditBookings_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteBookings" layoutX="523.0" layoutY="297.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteBookings" layoutX="523.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnDeleteBookings_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -240,17 +240,17 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Button fx:id="btnAddPackages" layoutX="197.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddPackages" layoutX="197.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditPackages" layoutX="343.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditPackages" layoutX="343.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeletePackages" layoutX="489.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeletePackages" layoutX="489.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeletePackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -276,17 +276,17 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
                                           <Label layoutX="359.0" layoutY="14.0" text="Products" />
-                                          <Button fx:id="btnAddProducts" layoutX="195.0" layoutY="295.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddProducts" layoutX="195.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnAddProducts_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditProducts" layoutX="347.0" layoutY="295.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditProducts" layoutX="347.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnEditProducts_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteProducts" layoutX="498.0" layoutY="295.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteProducts" layoutX="498.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnDeleteProducts_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -306,17 +306,17 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
                                           <Label layoutX="359.0" layoutY="14.0" text="Invoices" />
-                                          <Button fx:id="btnAddInvoices" layoutX="198.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddInvoices" layoutX="198.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddInvoices_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditInvoices" layoutX="350.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditInvoices" layoutX="350.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditInvoices_OncClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteInvoices" layoutX="501.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteInvoices" layoutX="501.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeleteInvoices_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
