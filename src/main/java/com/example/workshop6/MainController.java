@@ -138,11 +138,14 @@ public class MainController {
     @FXML // fx:id="colTravelerCount"
     private TableColumn<?, ?> colTravelerCount; // Value injected by FXMLLoader
 
+    @FXML // fx:id="colCustomerId2"
+    private TableColumn<?, ?> colCustomerId2; // Value injected by FXMLLoader
+
     @FXML // fx:id="colTripTypeId"
     private TableColumn<?, ?> colTripTypeId; // Value injected by FXMLLoader
 
-    @FXML // fx:id="colPackageId"
-    private TableColumn<?, ?> colPackageId; // Value injected by FXMLLoader
+    @FXML // fx:id="colPackageId2"
+    private TableColumn<?, ?> colPackageId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab3"
     private Tab tab3; // Value injected by FXMLLoader
@@ -158,6 +161,9 @@ public class MainController {
 
     @FXML // fx:id="tvPackages"
     private TableView<?> tvPackages; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colPackageId"
+    private TableColumn<?, ?> colPackageId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colPkgName"
     private TableColumn<?, ?> colPkgName; // Value injected by FXMLLoader
@@ -418,13 +424,15 @@ public class MainController {
         assert colBookingDate != null : "fx:id=\"colBookingDate\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colBookingNo != null : "fx:id=\"colBookingNo\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colTravelerCount != null : "fx:id=\"colTravelerCount\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colCustomerId2 != null : "fx:id=\"colCustomerId2\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colTripTypeId != null : "fx:id=\"colTripTypeId\" was not injected: check your FXML file 'main-view.fxml'.";
-        assert colPackageId != null : "fx:id=\"colPackageId\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colPackageId2 != null : "fx:id=\"colPackageId2\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab3 != null : "fx:id=\"tab3\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnAddPackages != null : "fx:id=\"btnAddPackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnEditPackages != null : "fx:id=\"btnEditPackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeletePackages != null : "fx:id=\"btnDeletePackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvPackages != null : "fx:id=\"tvPackages\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colPackageId != null : "fx:id=\"colPackageId\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colPkgName != null : "fx:id=\"colPkgName\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colPkgStartDate != null : "fx:id=\"colPkgStartDate\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colPkgEndDate != null : "fx:id=\"colPkgEndDate\" was not injected: check your FXML file 'main-view.fxml'.";

@@ -227,9 +227,9 @@
                                               <TableColumn fx:id="colBookingDate" prefWidth="75.0" text="BookingDate" />
                                                 <TableColumn fx:id="colBookingNo" prefWidth="75.0" text="BookingNo" />
                                                 <TableColumn fx:id="colTravelerCount" prefWidth="75.0" text="TravelerCount" />
-                                                <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="CustomerId" />
+                                                <TableColumn fx:id="colCustomerId2" prefWidth="75.0" text="CustomerId" />
                                                 <TableColumn fx:id="colTripTypeId" prefWidth="75.0" text="TripTypeId " />
-                                                <TableColumn fx:id="colPackageId" prefWidth="75.0" text="PackageId" />
+                                                <TableColumn fx:id="colPackageId2" prefWidth="75.0" text="PackageId" />
                                             </columns>
                                           </TableView>
                                        </children>
