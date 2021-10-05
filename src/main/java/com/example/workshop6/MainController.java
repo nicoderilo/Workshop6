@@ -108,8 +108,8 @@ public class MainController {
     @FXML // fx:id="colCustEmail"
     private TableColumn<?, ?> colCustEmail; // Value injected by FXMLLoader
 
-    @FXML // fx:id="col"
-    private TableColumn<?, ?> col; // Value injected by FXMLLoader
+    @FXML // fx:id="colAgentId"
+    private TableColumn<?, ?> colAgentId; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab2"
     private Tab tab2; // Value injected by FXMLLoader
@@ -283,7 +283,7 @@ public class MainController {
         assert colCustHomePhone != null : "fx:id=\"colCustHomePhone\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colCustBusPhone != null : "fx:id=\"colCustBusPhone\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colCustEmail != null : "fx:id=\"colCustEmail\" was not injected: check your FXML file 'main-view.fxml'.";
-        assert col != null : "fx:id=\"col\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colAgentId != null : "fx:id=\"colAgentId\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tab2 != null : "fx:id=\"tab2\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnAddBookings != null : "fx:id=\"btnAddBookings\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnEditBookings != null : "fx:id=\"btnEditBookings\" was not injected: check your FXML file 'main-view.fxml'.";

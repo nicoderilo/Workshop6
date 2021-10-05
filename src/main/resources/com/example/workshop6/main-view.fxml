@@ -194,7 +194,7 @@
                                                 <TableColumn fx:id="colCustHomePhone" prefWidth="75.0" text="CustHomePhone" />
                                                 <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="CustBusPhone" />
                                                 <TableColumn fx:id="colCustEmail" prefWidth="75.0" text="CustEmail" />
-                                                <TableColumn fx:id="col" prefWidth="75.0" text="AgentId " />
+                                                <TableColumn fx:id="colAgentId" prefWidth="75.0" text="AgentId " />
                                             </columns>
                                           </TableView>
                                        </children>
