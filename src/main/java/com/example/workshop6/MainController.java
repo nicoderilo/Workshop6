@@ -250,31 +250,6 @@ public class MainController {
     }
 
     @FXML
-    void btnBookings_OnEntered(MouseEvent event) {
-        btnBookings.setStyle("-fx-background-color: #0099cc");
-    }
-
-    @FXML
-    void btnBookings_OnExited(MouseEvent event) {
-        btnBookings.setStyle("-fx-background-color:  #0086b3");
-    }
-
-    @FXML
-    void btnCustomerrs_OnExit(MouseEvent event) {
-        btnCustomers.setStyle("-fx-background-color:  #0086b3");
-    }
-
-    @FXML
-    void btnCustomers_OnEn(ActionEvent event) {
-
-    }//don't use - for delete
-
-    @FXML
-    void btnCustomers_OnEntered(MouseEvent event) {
-        btnCustomers.setStyle("-fx-background-color: #0099cc");
-    }
-
-    @FXML
     void btnDeleteBookings_OnClick(ActionEvent event) {
 
     }
@@ -330,6 +305,50 @@ public class MainController {
     }
 
     @FXML
+    void btnInvoices_OnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnPackages_OnClick(ActionEvent event) {
+
+    }
+    @FXML
+    void btnProducts_OnClick(ActionEvent event) {
+
+    }
+    //HOVERS EFFECTS - START
+    @FXML
+    void btnBookings_OnEntered(MouseEvent event) {
+        btnBookings.setStyle("-fx-background-color: #0099cc");
+    }
+
+    @FXML
+    void btnBookings_OnExited(MouseEvent event) {
+        btnBookings.setStyle("-fx-background-color:  #0086b3");
+    }
+
+    @FXML
+    void btnCustomers_OnExit(MouseEvent event) {
+        btnCustomers.setStyle("-fx-background-color:  #0086b3");
+    }
+
+    @FXML
+    void btnCustomers_OnEntered(MouseEvent event) {
+        btnCustomers.setStyle("-fx-background-color: #0099cc");
+    }
+
+    @FXML
+    void btnPackages_OnEntered(MouseEvent event) {
+        btnPackages.setStyle("-fx-background-color: #0099cc");
+    }
+
+    @FXML
+    void btnPackages_OnExited(MouseEvent event) {
+        btnPackages.setStyle("-fx-background-color:  #0086b3");
+    }
+
+    @FXML
     void btnHome_OnEntered(MouseEvent event) {
         btnHome.setStyle("-fx-background-color: #0099cc");
     }
@@ -350,31 +369,6 @@ public class MainController {
     }
 
     @FXML
-    void btnInvoices_OnClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPackages_OnClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPackages_OnEntered(MouseEvent event) {
-        btnPackages.setStyle("-fx-background-color: #0099cc");
-    }
-
-    @FXML
-    void btnPackages_OnExited(MouseEvent event) {
-        btnPackages.setStyle("-fx-background-color:  #0086b3");
-    }
-
-    @FXML
-    void btnProducts_OnClick(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnProducts_OnEntered(MouseEvent event) {
         btnProducts.setStyle("-fx-background-color: #0099cc");
     }
@@ -383,6 +377,7 @@ public class MainController {
     void btnProducts_OnExited(MouseEvent event) {
         btnProducts.setStyle("-fx-background-color:  #0086b3");
     }
+    //HOVERS EFFECTS - END
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

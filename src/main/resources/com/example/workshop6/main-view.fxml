@@ -57,7 +57,7 @@
                         </VBox>
                         <VBox prefHeight="75.0" prefWidth="199.0">
                            <children>
-                              <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#btnCustomers_OnEn" onMouseEntered="#btnCustomers_OnEntered" onMouseExited="#btnCustomerrs_OnExit" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="CUSTOMERS" textFill="#ebebeb">
+                              <Button fx:id="btnCustomers" mnemonicParsing="false" onMouseEntered="#btnCustomers_OnEntered" onMouseExited="#btnCustomers_OnExit" prefHeight="88.0" prefWidth="207.0" style="-fx-background-color: #0086b3;" text="CUSTOMERS" textFill="#ebebeb">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
