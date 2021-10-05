@@ -310,6 +310,7 @@ public class MainController {
     @FXML
     void btnCustomers_OnClick(ActionEvent event) {
         tpMain.getSelectionModel().select(tab1);
+
     }
     @FXML
     void btnBookings_OnClick(ActionEvent event) {
@@ -460,11 +461,12 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
-       // getCustomers();
+
+        getCustomers();
 
     }
 
-    /*private void getCustomers() {
+    private void getCustomers() {
         String username = "";
         String password = "";
         String url = "";
@@ -487,23 +489,23 @@ public class MainController {
             while (rs.next())
             {
                 CustomerData.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
-                colCustomerId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("agentId"));
-                colCustFirstName.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtFirstName"));
-                colCustLastName.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtMiddleInitial"));
-                colCustAddress.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtLastName"));
-                colCustCity.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtBusPhone"));
-                colCustProv.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtEmail"));
-                colCustPostal.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
-                colCustCountry.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
-                colCustHomePhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
-                colCustBusPhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
-                colCustEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("agtPosition"));
-                colAgentId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("agencyId"));
+                colCustomerId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("CustomerId"));
+                colCustFirstName.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustFirstName"));
+                colCustLastName.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustLastName"));
+                colCustAddress.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustAddress"));
+                colCustCity.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustCity"));
+                colCustProv.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustProv"));
+                colCustPostal.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustPostal"));
+                colCustCountry.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustCountry"));
+                colCustHomePhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustHomePhone"));
+                colCustBusPhone.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustBusPhone"));
+                colCustEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("CustEmail"));
+                colAgentId.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("AgentId"));
                 tvCustomers.setItems(CustomerData);
             }
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }//getCustomers - End*/
+    }//getCustomers - End
 }
