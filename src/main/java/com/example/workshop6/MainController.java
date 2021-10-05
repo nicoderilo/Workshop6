@@ -251,27 +251,27 @@ public class MainController {
 
     @FXML
     void btnBookings_OnEntered(MouseEvent event) {
-
+        btnBookings.setStyle("-fx-background-color: #0099cc");
     }
 
     @FXML
     void btnBookings_OnExited(MouseEvent event) {
-
+        btnBookings.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML
     void btnCustomerrs_OnExit(MouseEvent event) {
-
+        btnCustomers.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML
     void btnCustomers_OnEn(ActionEvent event) {
 
-    }
+    }//don't use - for delete
 
     @FXML
     void btnCustomers_OnEntered(MouseEvent event) {
-
+        btnCustomers.setStyle("-fx-background-color: #0099cc");
     }
 
     @FXML
@@ -331,22 +331,22 @@ public class MainController {
 
     @FXML
     void btnHome_OnEntered(MouseEvent event) {
-
+        btnHome.setStyle("-fx-background-color: #0099cc");
     }
 
     @FXML
     void btnHome_OnExited(MouseEvent event) {
-
+        btnHome.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML
     void btnInvoice_OnEntered(MouseEvent event) {
-
+        btnInvoices.setStyle("-fx-background-color:  #0099cc");
     }
 
     @FXML
     void btnInvoice_OnExited(MouseEvent event) {
-
+        btnInvoices.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML
@@ -361,12 +361,12 @@ public class MainController {
 
     @FXML
     void btnPackages_OnEntered(MouseEvent event) {
-
+        btnPackages.setStyle("-fx-background-color: #0099cc");
     }
 
     @FXML
     void btnPackages_OnExited(MouseEvent event) {
-
+        btnPackages.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML
@@ -376,12 +376,12 @@ public class MainController {
 
     @FXML
     void btnProducts_OnEntered(MouseEvent event) {
-
+        btnProducts.setStyle("-fx-background-color: #0099cc");
     }
 
     @FXML
     void btnProducts_OnExited(MouseEvent event) {
-
+        btnProducts.setStyle("-fx-background-color:  #0086b3");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
