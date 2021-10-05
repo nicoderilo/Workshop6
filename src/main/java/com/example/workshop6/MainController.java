@@ -168,29 +168,21 @@ public class MainController {
     private Button btnDeletePackages; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvPackages"
-    private TableView<?> tvPackages; // Value injected by FXMLLoader
-
+    private TableView<Package> tvPackages; // Value injected by FXMLLoader
     @FXML // fx:id="colPackageId"
-    private TableColumn<?, ?> colPackageId; // Value injected by FXMLLoader
-
+    private TableColumn<Package, Integer> colPackageId; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgName"
-    private TableColumn<?, ?> colPkgName; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgName; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgStartDate"
-    private TableColumn<?, ?> colPkgStartDate; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgStartDate; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgEndDate"
-    private TableColumn<?, ?> colPkgEndDate; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgEndDate; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgDesc"
-    private TableColumn<?, ?> colPkgDesc; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgDesc; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgBasePrice"
-    private TableColumn<?, ?> colPkgBasePrice; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgBasePrice; // Value injected by FXMLLoader
     @FXML // fx:id="colPkgAgencyCommission"
-    private TableColumn<?, ?> colPkgAgencyCommission; // Value injected by FXMLLoader
-
+    private TableColumn<Package, String> colPkgAgencyCommission; // Value injected by FXMLLoader
     @FXML // fx:id="tab4"
     private Tab tab4; // Value injected by FXMLLoader
 
@@ -331,6 +323,7 @@ public class MainController {
 
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
+    private ObservableList<Package> PackageData = FXCollections.observableArrayList();
 
     //HOVERS EFFECTS - START
     @FXML
@@ -463,6 +456,7 @@ public class MainController {
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
 
         getCustomers();
+        getPackages();
 
     }
 
@@ -508,4 +502,45 @@ public class MainController {
             e.printStackTrace();
         }
     }//getCustomers - End
+
+
+    private void getPackages() {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from packages");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println(rsmd.getColumnCount());
+            while (rs.next())
+            {
+                PackageData.add(new Package(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7)));
+                colPackageId.setCellValueFactory(new PropertyValueFactory<Package, Integer>("pkgId"));
+                colPkgName.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgName"));
+                colPkgStartDate.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgStartDate"));
+                colPkgEndDate.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgEndDate"));
+                colPkgDesc.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgDescription"));
+                colPkgBasePrice.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgBasePrice"));
+                colPkgAgencyCommission.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgAgencyCommission"));
+                tvPackages.setItems(PackageData);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//getPackages - End*/
 }
