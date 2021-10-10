@@ -5,6 +5,7 @@
 package com.example.workshop6;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -132,28 +133,28 @@ public class MainController {
     private Button btnDeleteBookings; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvBookings"
-    private TableView<?> tvBookings; // Value injected by FXMLLoader
+    private TableView<Booking> tvBookings; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingId"
-    private TableColumn<?, ?> colBookingId; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colBookingId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingDate"
-    private TableColumn<?, ?> colBookingDate; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colBookingDate; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingNo"
-    private TableColumn<?, ?> colBookingNo; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colBookingNo; // Value injected by FXMLLoader
 
     @FXML // fx:id="colTravelerCount"
-    private TableColumn<?, ?> colTravelerCount; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colTravelerCount; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustomerId2"
-    private TableColumn<?, ?> colCustomerId2; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colCustomerId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="colTripTypeId"
-    private TableColumn<?, ?> colTripTypeId; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colTripTypeId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colPackageId2"
-    private TableColumn<?, ?> colPackageId2; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colPackageId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab3"
     private Tab tab3; // Value injected by FXMLLoader
@@ -323,6 +324,7 @@ public class MainController {
 
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
+    private ObservableList<Booking> BookingData = FXCollections.observableArrayList();
     private ObservableList<Package> PackageData = FXCollections.observableArrayList();
 
     //HOVERS EFFECTS - START
@@ -456,6 +458,7 @@ public class MainController {
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
 
         getCustomers();
+        getBookings();
         getPackages();
 
     }
@@ -503,6 +506,43 @@ public class MainController {
         }
     }//getCustomers - End
 
+    private void getBookings(){
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from bookings");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println(rsmd.getColumnCount());
+            while (rs.next())
+            {
+                BookingData.add(new Booking(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7)));
+                colBookingId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingId"));
+                colBookingDate.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingDate"));
+                colBookingNo.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingNo"));
+                colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("travelerCount"));
+                colCustomerId2.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("customerId"));
+                colTripTypeId.setCellValueFactory(new PropertyValueFactory<Booking, String>("tripTypeId"));
+                colPackageId2.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("packageId"));
+                tvBookings.setItems(BookingData);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void getPackages() {
         String username = "";
