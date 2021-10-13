@@ -6,8 +6,11 @@ package com.example.workshop6;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.sql.*;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -15,14 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainController {
 
@@ -219,6 +222,7 @@ public class MainController {
     @FXML // fx:id="tvInvoices"
     private TableView<?> tvInvoices; // Value injected by FXMLLoader
 
+
     @FXML
     void btnAddBookings_OnClick(ActionEvent event) {
 
@@ -235,8 +239,21 @@ public class MainController {
     }
 
     @FXML
-    void btnAddPackages_OnClick(ActionEvent event) {
-
+    void btnAddPackages_OnClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new
+                FXMLLoader(getClass().getResource("package-view.fxml"));
+        Parent root1 = fxmlLoader.load();
+        PackageViewController pvc = fxmlLoader.getController();
+        pvc.setPackageData(tvPackages.getItems());
+        pvc.addPackage();
+        Stage stage = new Stage();
+        //set what you want on your stage
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Add Package");
+        stage.setScene(new Scene(root1));
+        stage.setResizable(false);
+        stage.show();
+        lblPackages.setText("Packages:" + tvPackages.getItems().size());
     }
 
     @FXML
@@ -262,8 +279,35 @@ public class MainController {
 
     @FXML
     void btnDeletePackages_OnClick(ActionEvent event) {
+        int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >=0) {
+            String pkgId = tvPackages.getSelectionModel().getSelectedItem().getPkgId();
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Delete confirmation Dialog");
+                alert.setContentText("Deleting package will delete corresponding product-supplers and bookings. Are you sure?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    deletePackage(pkgId);
+                    tvPackages.getItems().remove(selectedIndex);
+                    lblPackages.setText("Packages:" + tvPackages.getItems().size());
+                } else {
+                    alert.close();
+                }
 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
     }
+
 
     @FXML
     void btnDeleteProducts_OnClick(ActionEvent event) {
@@ -286,8 +330,30 @@ public class MainController {
     }
 
     @FXML
-    void btnEditPackages_OnClick(ActionEvent event) {
+    void btnEditPackages_OnClick(ActionEvent event) throws IOException {
+        int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0) {
+            Package p = this.PackageData.get(selectedIndex);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("package-view.fxml"));
+            Parent root1 = fxmlLoader.load();
+            PackageViewController pvc = fxmlLoader.getController();
+            pvc.setPackageData(tvPackages.getItems());
+            pvc.displayPackage(p, selectedIndex);
+            Stage stage = new Stage();
+            //set what you want on your stage
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Edit Package");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.show();
+        }
+        else
+        {
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -323,7 +389,7 @@ public class MainController {
 
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
-    private ObservableList<Package> PackageData = FXCollections.observableArrayList();
+    public ObservableList<Package> PackageData = FXCollections.observableArrayList();
 
     //HOVERS EFFECTS - START
     @FXML
@@ -454,11 +520,14 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
-
         getCustomers();
         getPackages();
+        lblPackages.setText("Packages:"+tvPackages.getItems().size());
+        //enablechanges();
 
     }
+
+
 
     private void getCustomers() {
         String username = "";
@@ -538,9 +607,57 @@ public class MainController {
                 colPkgAgencyCommission.setCellValueFactory(new PropertyValueFactory<Package, String>("pkgAgencyCommission"));
                 tvPackages.setItems(PackageData);
             }
+            tvPackages.setOnMouseClicked(event -> {events();});
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }//getPackages - End*/
+
+    private void events() {
+        int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            btnEditPackages.setDisable(false);
+            btnDeletePackages.setDisable(false);
+        }
+    }
+
+    private void deletePackage(String pkgId) throws SQLException {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            String sql2 = String.format("delete from Bookings where PackageId = ?");
+            String sql1 = String.format("delete from Packages_Products_Suppliers where PackageId = ?");
+            String  sql = String.format("delete from Packages where PackageId = ?");
+            PreparedStatement ps2 = conn.prepareStatement(sql2);
+            PreparedStatement ps1 = conn.prepareStatement(sql1);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps2.setString(1, pkgId);
+            ps1.setString(1, pkgId);
+            ps.setString(1, pkgId);
+            ps2.execute();
+            ps1.execute();
+            ps.execute();
+            System.out.println("Deleted");
+            tvPackages.setItems(PackageData);
+            conn.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
