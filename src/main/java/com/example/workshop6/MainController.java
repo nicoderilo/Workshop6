@@ -1,5 +1,15 @@
 /**
- * Sample Skeleton for 'main-view.fxml' Controller Class
+ * Author: Group1
+ * Date: 2021/10/18
+ * Course Module: PROJ207A_CMPP264_Java_Workshop6
+ * Assignment name: Threaded Project for OOSD_Term3_Workshop6_Group1
+ * Description: GUI for Travel experts database which allows data manipulation
+ */
+
+/**
+ * Skeleton for 'main-view.fxml' Controller Class
+ * Consists of tabs for Customers, Bookings, Packages, Products, Invoices
+ * Each tab allows ADD, EDIT and DELETE operations
  */
 
 package com.example.workshop6;
@@ -11,7 +21,6 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -235,7 +244,12 @@ public class MainController {
     void btnAddInvoices_OnClick(ActionEvent event) {
 
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Add package on button click
+     * Opens the Package view in Insert mode to allow addition of packages
+     * Calls the method addPackage in the package view controller
+    */
     @FXML
     void btnAddPackages_OnClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new
@@ -274,7 +288,12 @@ public class MainController {
     void btnDeleteInvoices_OnClick(ActionEvent event) {
 
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Delete package on button click
+     * Displays an alert and deletes package on confirmation
+     * Calls the method deletePackage which deletes the selected package from the database
+     */
     @FXML
     void btnDeletePackages_OnClick(ActionEvent event) {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
@@ -327,6 +346,12 @@ public class MainController {
 
     }
 
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Edit package on button click
+     * Opens the Package view in update mode to allow changes to packages
+     * Calls the method displayPackage() in the package view controller and passes the selected package
+     */
     @FXML
     void btnEditPackages_OnClick(ActionEvent event) throws IOException {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
@@ -521,8 +546,6 @@ public class MainController {
         getCustomers();
         getPackages();
         lblPackages.setText("Packages:"+tvPackages.getItems().size());
-        //enablechanges();
-
     }
 
 
@@ -571,6 +594,11 @@ public class MainController {
     }//getCustomers - End
 
 
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method getPackages() that establishes connection to database
+     * Fetches all available packages and displays in the table view
+     */
     private void getPackages() {
         String username = "";
         String password = "";
@@ -589,8 +617,6 @@ public class MainController {
             Connection conn = DriverManager.getConnection(url, username, password);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from packages");
-            ResultSetMetaData rsmd = rs.getMetaData();
-            System.out.println(rsmd.getColumnCount());
             while (rs.next())
             {
                 PackageData.add(new Package(rs.getInt(1), rs.getString(2),
@@ -610,16 +636,24 @@ public class MainController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }//getPackages - End*/
+    }//getPackages - End
 
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method events() that disables edit and delete buttons until packages is selected
+     */
     private void events() {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             btnEditPackages.setDisable(false);
             btnDeletePackages.setDisable(false);
         }
-    }
-
+    }//events - End
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method deletePackage() that connects to the database and deletes selected package
+     * Deletes related data from related tables with foreign key constraints
+     */
     private void deletePackage(String pkgId) throws SQLException {
         String username = "";
         String password = "";
@@ -648,7 +682,6 @@ public class MainController {
             ps2.execute();
             ps1.execute();
             ps.execute();
-            System.out.println("Deleted");
             tvPackages.setItems(PackageData);
             conn.close();
         }
@@ -656,6 +689,6 @@ public class MainController {
             e.printStackTrace();
         }
 
-    }
+    }//deletePackages - End
 
 }
