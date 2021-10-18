@@ -250,7 +250,7 @@ public class MainController {
         stage.setTitle("Add Package");
         stage.setScene(new Scene(root1));
         stage.setResizable(false);
-        stage.show();
+        stage.showAndWait();
         lblPackages.setText("Packages:" + tvPackages.getItems().size());
     }
 

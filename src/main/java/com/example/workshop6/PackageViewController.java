@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -149,6 +150,7 @@ public class PackageViewController {
                     PreparedStatement stmt = conn.prepareStatement("INSERT INTO Packages (PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgAgencyCommission)" +
                             "VALUES (?,?,?,?,?,?)");
                     stmt.setString(1, this.tfPkgName.getText());
+
                     stmt.setString(2, this.tfPkgStartDate.getText());
                     stmt.setString(3, this.tfPkgEndDate.getText());
                     stmt.setString(4, this.tfPkgDescription.getText());
@@ -197,6 +199,7 @@ public class PackageViewController {
         assert tfPkgBasePrice != null : "fx:id=\"tfPkgBasePrice\" was not injected: check your FXML file 'package-view.fxml'.";
         assert tfAgencyCommission != null : "fx:id=\"tfAgencyCommission\" was not injected: check your FXML file 'package-view.fxml'.";
 
+
     }
 
     public void addPackage() {
@@ -212,11 +215,31 @@ public class PackageViewController {
             errors.append("- Please enter a Package name.\n");
         }
 
-        if (!(tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
-            errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
+       if( isEmpty(tfPkgStartDate.getText())){
+            tfPkgStartDate.setText(null);
+        } else {
+            if (!(tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
+                errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
+            }
+
         }
-        if (!(tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
-            errors.append("- Please enter a valid End date in the format YYYY-MM-DD.\n");
+        if(isEmpty(tfPkgEndDate.getText())){
+            tfPkgEndDate.setText(null);
+        }else {
+            if (!(tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
+                errors.append("- Please enter a valid End date in the format YYYY-MM-DD.\n");
+            }
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+
+        if(!isEmpty(tfPkgStartDate.getText()) && !isEmpty(tfPkgEndDate.getText())) {
+            if (tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)") &&
+                    tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)")) {
+                if (sdf.parse(tfPkgStartDate.getText()).compareTo(sdf.parse(tfPkgEndDate.getText())) > 0) {
+                    errors.append("- Start date is after End date.\n");
+                }
+            }
         }
 
         if (tfPkgBasePrice.getText().trim().isEmpty()) {
@@ -228,16 +251,24 @@ public class PackageViewController {
             errors.append("- Please enter Base Price as an Integer or Decimal.\n");
         }
 
-        if (!tfAgencyCommission.getText().matches("[0-9]\\d*(\\.\\d+)?"))
+        if(isEmpty(tfAgencyCommission.getText())) {
+            tfAgencyCommission.setText(null);
+        }
+        else if (!tfAgencyCommission.getText().matches("[0-9]\\d*(\\.\\d+)?"))
         {
             errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
+        }
+        else if ((Double.parseDouble(tfAgencyCommission.getText()) > Double.parseDouble(tfPkgBasePrice.getText())))
+        {
+            errors.append("- Agency commission cannot be greater than Base price.\n");
+
         }
 
         // If any missing information is found, show the error messages and return false
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Required Fields Empty");
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter appropriate values");
             alert.setContentText(errors.toString());
 
             alert.showAndWait();
@@ -246,4 +277,11 @@ public class PackageViewController {
         // No errors
         return true;
     }
+    boolean isEmpty(String val) {
+        if (val == null || val.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
 }
