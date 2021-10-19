@@ -147,7 +147,7 @@
                            </children>
                         </VBox>
                         <TabPane id="tpMain" fx:id="tpMain" prefHeight="374.0" prefWidth="924.0" style="-fx-tab-max-height: 20;" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
+                           <tabs>
                               <Tab id="tab5" fx:id="tab0" text="0">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
@@ -161,9 +161,9 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                            <Tab id="tab1" fx:id="tab1" text="1">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                              <Tab id="tab1" fx:id="tab1" text="1">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
                                           <Label layoutX="384.0" layoutY="14.0" text="CUSTOMERS" />
                                           <Button fx:id="btnAddCustomers" layoutX="215.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddCustomers_Onclick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
@@ -182,9 +182,9 @@
                                              </font>
                                           </Button>
                                           <TableView fx:id="tvCustomers" layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
-                                            <columns>
-                                              <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="ID" />
-                                              <TableColumn fx:id="colCustFirstName" prefWidth="75.0" text="CustFirstName" />
+                                             <columns>
+                                                <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="ID" />
+                                                <TableColumn fx:id="colCustFirstName" prefWidth="75.0" text="CustFirstName" />
                                                 <TableColumn fx:id="colCustLastName" prefWidth="75.0" text="CustLastName" />
                                                 <TableColumn fx:id="colCustAddress" prefWidth="75.0" text="CustAddress" />
                                                 <TableColumn fx:id="colCustCity" prefWidth="75.0" text="CustCity" />
@@ -195,15 +195,15 @@
                                                 <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="CustBusPhone" />
                                                 <TableColumn fx:id="colCustEmail" prefWidth="75.0" text="CustEmail" />
                                                 <TableColumn fx:id="colAgentId" prefWidth="75.0" text="AgentId " />
-                                            </columns>
+                                             </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab id="tab2" fx:id="tab2" style="-fx-tab-max-height: 0;" text="2">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                 </content>
+                              </Tab>
+                              <Tab id="tab2" fx:id="tab2" style="-fx-tab-max-height: 0;" text="2">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
                                           <Button fx:id="btnAddBookings" layoutX="213.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnAddBookings_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
@@ -222,20 +222,20 @@
                                           </Button>
                                           <Label layoutX="370.0" layoutY="14.0" text="Bookings" />
                                           <TableView fx:id="tvBookings" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="colBookingId" prefWidth="75.0" text="BookingId " />
-                                              <TableColumn fx:id="colBookingDate" prefWidth="144.0" text="BookingDate" />
+                                             <columns>
+                                                <TableColumn fx:id="colBookingId" prefWidth="75.0" text="BookingId " />
+                                                <TableColumn fx:id="colBookingDate" prefWidth="144.0" text="BookingDate" />
                                                 <TableColumn fx:id="colBookingNo" prefWidth="91.0" text="BookingNo" />
                                                 <TableColumn fx:id="colTravelerCount" prefWidth="143.0" text="TravelerCount" />
                                                 <TableColumn fx:id="colCustomerId2" prefWidth="86.0" text="CustomerId" />
                                                 <TableColumn fx:id="colTripTypeId" prefWidth="94.0" text="TripTypeId " />
                                                 <TableColumn fx:id="colPackageId2" prefWidth="113.0" text="PackageId" />
-                                            </columns>
+                                             </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                              </content>
-                            </Tab>
+                                 </content>
+                              </Tab>
                               <Tab id="tab3" fx:id="tab3" text="3">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
@@ -292,10 +292,10 @@
                                              </font>
                                           </Button>
                                           <TableView fx:id="tvProducts" layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="ProductId" />
-                                              <TableColumn fx:id="colProductName" prefWidth="75.0" text="ProductName" />
-                                            </columns>
+                                             <columns>
+                                                <TableColumn fx:id="colProductId" prefWidth="75.0" text="ProductId" />
+                                                <TableColumn fx:id="colProductName" prefWidth="75.0" text="ProductName" />
+                                             </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
@@ -322,16 +322,16 @@
                                              </font>
                                           </Button>
                                           <TableView fx:id="tvInvoices" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                          </tabs>
+                           </tabs>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

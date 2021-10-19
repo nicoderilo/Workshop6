@@ -197,13 +197,13 @@ public class MainController {
     private Button btnDeleteProducts; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvProducts"
-    private TableView<?> tvProducts; // Value injected by FXMLLoader
+    private TableView<Products> tvProducts; // Value injected by FXMLLoader
 
     @FXML // fx:id="colProductId"
-    private TableColumn<?, ?> colProductId; // Value injected by FXMLLoader
+    private TableColumn<Products, Integer> colProductId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colProductName"
-    private TableColumn<?, ?> colProductName; // Value injected by FXMLLoader
+    private TableColumn<Products, String> colProductName; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab5"
     private Tab tab5; // Value injected by FXMLLoader
@@ -250,13 +250,25 @@ public class MainController {
         stage.setTitle("Add Package");
         stage.setScene(new Scene(root1));
         stage.setResizable(false);
-        stage.showAndWait();
+        stage.show();
         lblPackages.setText("Packages:" + tvPackages.getItems().size());
     }
 
     @FXML
-    void btnAddProducts_OnClick(ActionEvent event) {
-
+    void btnAddProducts_OnClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new
+                FXMLLoader(getClass().getResource("Product-view.fxml"));
+        Parent parent = fxmlLoader.load();
+        ProductViewController productController = fxmlLoader.getController();
+        productController.setProductData(tvProducts.getItems());
+        productController.addProduct();
+        Stage stage = new Stage();
+        //set what you want on your stage
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Add Product");
+        stage.setScene(new Scene(parent));
+        stage.setResizable(false);
+        stage.show();
     }
 
 
@@ -309,6 +321,32 @@ public class MainController {
 
     @FXML
     void btnDeleteProducts_OnClick(ActionEvent event) {
+        int selectedIndex = tvProducts.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >=0) {
+            String ProductId = String.valueOf(tvProducts.getSelectionModel().getSelectedItem().getProductId());
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Delete confirmation Dialog");
+                alert.setContentText("Confirm deletion of product");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    deleteProduct(ProductId);
+                    tvProducts.getItems().remove(selectedIndex);
+                } else {
+                    alert.close();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
 
     }
 
@@ -347,7 +385,6 @@ public class MainController {
         }
         else
         {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("No rows selected!");
             alert.showAndWait();
@@ -355,7 +392,27 @@ public class MainController {
     }
 
     @FXML
-    void btnEditProducts_OnClick(ActionEvent event) {
+    void btnEditProducts_OnClick(ActionEvent event) throws IOException {
+        int selectedIndex = tvProducts.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0){
+           Products prod = this.ProductData.get(selectedIndex);
+           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Product-view.fxml"));
+           Parent parent = fxmlLoader.load();
+           ProductViewController productController = fxmlLoader.getController();
+           productController.setProductData(tvProducts.getItems());
+           productController.displayProduct(prod, selectedIndex);
+           Stage stage = new Stage();
+           stage.initModality(Modality.APPLICATION_MODAL);
+           stage.setTitle("Edit Products");
+           stage.setScene(new Scene(parent));
+           stage.show();
+        }
+        else{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("No selected data");
+        alert.showAndWait();
+        }
+
 
     }
 
@@ -365,8 +422,8 @@ public class MainController {
     }
     @FXML
     void btnCustomers_OnClick(ActionEvent event) {
+        getCustomers();
         tpMain.getSelectionModel().select(tab1);
-
     }
     @FXML
     void btnBookings_OnClick(ActionEvent event) {
@@ -375,11 +432,15 @@ public class MainController {
     @FXML
     void btnPackages_OnClick(ActionEvent event) {
         tpMain.getSelectionModel().select(tab3);
+        getPackages();
+        lblPackages.setText("Packages:"+tvPackages.getItems().size());
     }
     @FXML
     void btnProducts_OnClick(ActionEvent event) {
+        LoadProducts();
         tpMain.getSelectionModel().select(tab4);
     }
+
     @FXML
     void btnInvoices_OnClick(ActionEvent event) {
         tpMain.getSelectionModel().select(tab5);
@@ -388,6 +449,7 @@ public class MainController {
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
     public ObservableList<Package> PackageData = FXCollections.observableArrayList();
+    public ObservableList<Products> ProductData = FXCollections.observableArrayList();
 
     //HOVERS EFFECTS - START
     @FXML
@@ -518,15 +580,73 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
-        getCustomers();
-        getPackages();
-        lblPackages.setText("Packages:"+tvPackages.getItems().size());
+
         //enablechanges();
+
+    }
+    private void LoadProducts() {
+        String username = "";
+        String password = "";
+        String url = "";
+        try{
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try{
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Products");
+            while (rs.next()){
+                ProductData.add(new Products(rs.getInt(1), rs.getString(2)));
+                colProductId.setCellValueFactory(new PropertyValueFactory<Products, Integer>("ProductId"));
+                colProductName.setCellValueFactory(new PropertyValueFactory<Products, String>("ProdName"));
+                tvProducts.setItems(ProductData);
+            }
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    private void deleteProduct(String ProductId) throws SQLException {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            String query = String.format("delete from Products where ProductId = ?");
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, ProductId);
+            ps.execute();
+            System.out.println("Deleted");
+            tvProducts.setItems(ProductData);
+            conn.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
 
 
+
+    //Customer Data
     private void getCustomers() {
         String username = "";
         String password = "";
@@ -570,7 +690,7 @@ public class MainController {
         }
     }//getCustomers - End
 
-
+        //Package data
     private void getPackages() {
         String username = "";
         String password = "";
