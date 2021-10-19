@@ -288,9 +288,12 @@ public class MainController {
             Customer customer = tvCustomers.getSelectionModel().getSelectedItem();
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM `customers` WHERE `CustomerId` = "+customer.getCustomerId());
             stmt.execute();
+            displayCounts();
 
         } else {
-
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
         }
     }
 
