@@ -253,15 +253,15 @@ public class EditCustomerController {
         } else {
             if (!(tfCustProv.getText().matches("[a-zA-Z]{2}"))) {
                 errors.append("- Please enter a valid Province ex: AB for Alberta\n");
-            }
+                }
         }
 
         if (tfCustPostal.getText().trim().isEmpty()) {
             errors.append("- Please enter a Postal Code.\n");
         } //else {
-        //if (!(tfCustPostal.getText().matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$"))) {
-        // errors.append("- Please enter a valid Postal code\n");
-        //}
+            //if (!(tfCustPostal.getText().matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$"))) {
+               // errors.append("- Please enter a valid Postal code\n");
+            //}
         //}
 
         if (tfCustHomePhone.getText().trim().isEmpty()) {
@@ -287,6 +287,23 @@ public class EditCustomerController {
             }
         }
 
+//        if (tfAgentId.getText().trim().isEmpty()) {
+//            tfAgentId.setText(null);
+//        }
+
+        //--
+        if(isEmpty(tfAgentId.getText())) {
+            tfAgentId.setText(null);
+        }
+        else if (!tfAgentId.getText().matches("[0-9]\\d*(\\.\\d+)?"))
+        {
+            errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
+        }
+
+
+
+        //--
+
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -298,6 +315,13 @@ public class EditCustomerController {
         }
         // No errors
         return true;
+    }
+
+    boolean isEmpty(String val) {
+        if (val == null || val.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
 }
