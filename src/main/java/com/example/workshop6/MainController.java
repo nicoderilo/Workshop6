@@ -60,8 +60,8 @@ public class MainController {
     @FXML // fx:id="btnInvoices"
     private Button btnInvoices; // Value injected by FXMLLoader
 
-    @FXML // fx:id="lbCustomers"
-    private Label lbCustomers; // Value injected by FXMLLoader
+    @FXML // fx:id="lblCustomers"
+    private Label lblCustomers; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblBookings"
     private Label lblBookings; // Value injected by FXMLLoader
@@ -236,8 +236,28 @@ public class MainController {
     }
 
     @FXML
-    void btnAddCustomers_Onclick(ActionEvent event) {
+    void btnAddCustomers_Onclick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editcustomer.fxml"));
+        Parent parent = fxmlLoader.load();
+        EditCustomerController editCustomerController = fxmlLoader.<EditCustomerController>getController();
+        editCustomerController.lblCustomers.setText("Add Customer");
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        displayCounts();
+    }
 
+    private void displayCounts() {
+        try {
+            lblCustomers.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
+            lblBookings.setText( "Bookings  "+ Integer.toString((MyFunction.countData("bookings"))));
+            lblPackages.setText( "Packages  "+ Integer.toString((MyFunction.countData("packages"))));
+            //lblInvoices.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } //Display Total Counts
     }
 
     @FXML
@@ -265,7 +285,8 @@ public class MainController {
         stage.setScene(new Scene(root1));
         stage.setResizable(false);
         stage.showAndWait();
-        lblPackages.setText("Packages:" + tvPackages.getItems().size());
+        displayCounts();
+        //lblPackages.setText("Packages:" + tvPackages.getItems().size());
     }
 
     @FXML
@@ -280,8 +301,24 @@ public class MainController {
     }
 
     @FXML
-    void btnDeleteCustomers_OnClick(ActionEvent event) {
+    void btnDeleteCustomers_OnClick(ActionEvent event) throws SQLException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Customer");
+        alert.setHeaderText("Delete");
+        alert.setContentText("Are you sure you want to delete this customer?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            Customer customer = tvCustomers.getSelectionModel().getSelectedItem();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM `customers` WHERE `CustomerId` = "+customer.getCustomerId());
+            stmt.execute();
+            displayCounts();
+            getCustomers();
+
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
@@ -338,7 +375,11 @@ public class MainController {
 
     @FXML
     void btnEditCustomers_OnClick(ActionEvent event) {
-
+        try {
+            onCustomerOpenDialog(tvCustomers.getSelectionModel().getSelectedIndex());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -484,7 +525,7 @@ public class MainController {
         assert btnPackages != null : "fx:id=\"btnPackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnProducts != null : "fx:id=\"btnProducts\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnInvoices != null : "fx:id=\"btnInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
-        assert lbCustomers != null : "fx:id=\"lbCustomers\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert lblCustomers != null : "fx:id=\"lbCustomers\" was not injected: check your FXML file 'main-view.fxml'.";
         assert lblBookings != null : "fx:id=\"lblBookings\" was not injected: check your FXML file 'main-view.fxml'.";
         assert lblPackages != null : "fx:id=\"lblPackages\" was not injected: check your FXML file 'main-view.fxml'.";
         assert lblInvoices != null : "fx:id=\"lblInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
@@ -543,12 +584,26 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
+
+        displayCounts();
         getCustomers();
         getPackages();
-        lblPackages.setText("Packages:"+tvPackages.getItems().size());
+
     }
 
-
+    private void onCustomerOpenDialog(int selectedIndex) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editcustomer.fxml"));
+        Parent parent = fxmlLoader.load();
+        EditCustomerController editCustomerController = fxmlLoader.<EditCustomerController>getController();
+        editCustomerController.lblCustomers.setText("Update Customer");
+        editCustomerController.setCustomerObservableList(CustomerData);
+        editCustomerController.setCustomerSelectedIndex(selectedIndex);
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
 
     private void getCustomers() {
         String username = "";

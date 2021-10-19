@@ -110,7 +110,7 @@
                            <children>
                               <HBox prefHeight="160.0" prefWidth="922.0">
                                  <children>
-                                    <Label fx:id="lbCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
+                                    <Label fx:id="lblCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
