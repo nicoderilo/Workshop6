@@ -110,7 +110,7 @@
                            <children>
                               <HBox prefHeight="160.0" prefWidth="922.0">
                                  <children>
-                                    <Label fx:id="lbCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
+                                    <Label fx:id="lblCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -184,17 +184,17 @@
                                           <TableView fx:id="tvCustomers" layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
                                             <columns>
                                               <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="ID" />
-                                              <TableColumn fx:id="colCustFirstName" prefWidth="75.0" text="CustFirstName" />
-                                                <TableColumn fx:id="colCustLastName" prefWidth="75.0" text="CustLastName" />
-                                                <TableColumn fx:id="colCustAddress" prefWidth="75.0" text="CustAddress" />
-                                                <TableColumn fx:id="colCustCity" prefWidth="75.0" text="CustCity" />
-                                                <TableColumn fx:id="colCustProv" prefWidth="75.0" text="CustProv" />
-                                                <TableColumn fx:id="colCustPostal" prefWidth="75.0" text="CustPostal" />
-                                                <TableColumn fx:id="colCustCountry" prefWidth="75.0" text="CustCountry" />
-                                                <TableColumn fx:id="colCustHomePhone" prefWidth="75.0" text="CustHomePhone" />
-                                                <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="CustBusPhone" />
-                                                <TableColumn fx:id="colCustEmail" prefWidth="75.0" text="CustEmail" />
-                                                <TableColumn fx:id="colAgentId" prefWidth="75.0" text="AgentId " />
+                                              <TableColumn fx:id="colCustFirstName" prefWidth="75.0" text="First Name" />
+                                                <TableColumn fx:id="colCustLastName" prefWidth="75.0" text="Last Name" />
+                                                <TableColumn fx:id="colCustAddress" prefWidth="75.0" text="Address" />
+                                                <TableColumn fx:id="colCustCity" prefWidth="75.0" text="City" />
+                                                <TableColumn fx:id="colCustProv" minWidth="-1.0" prefWidth="75.0" text="Province" />
+                                                <TableColumn fx:id="colCustPostal" prefWidth="75.0" text="Postal" />
+                                                <TableColumn fx:id="colCustCountry" prefWidth="75.0" text="Country" />
+                                                <TableColumn fx:id="colCustHomePhone" prefWidth="75.0" text="Home Phone" />
+                                                <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="Bussines Phone" />
+                                                <TableColumn fx:id="colCustEmail" prefWidth="75.0" text="Email" />
+                                                <TableColumn fx:id="colAgentId" prefWidth="75.0" text="Agend ID" />
                                             </columns>
                                           </TableView>
                                        </children>
