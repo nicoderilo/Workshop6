@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.PackageViewController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="675.0">
+         <children>
+            <VBox fx:id="vbPkgId" prefHeight="103.0" prefWidth="675.0">
+               <children>
+                  <HBox prefHeight="117.0" prefWidth="669.0">
+                     <children>
+                        <Label fx:id="lblAgtName" prefHeight="42.0" prefWidth="290.0" text="Package Id">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfPackageId" disable="true" editable="false" prefHeight="38.0" prefWidth="290.0">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox layoutY="431.0" prefHeight="76.0" prefWidth="678.0">
+               <children>
+                  <Button fx:id="btnSave" mnemonicParsing="false" onMouseClicked="#onClickSave" text="Save">
+                     <HBox.margin>
+                        <Insets left="250.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnCancel" mnemonicParsing="false" onMouseClicked="#onClickCancel" text="Cancel">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox layoutY="100.0" prefHeight="220.0" prefWidth="298.0">
+               <children>
+                  <Label fx:id="lblPkgName" prefHeight="18.0" prefWidth="295.0" text="PackageName">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPkgStartDate" prefHeight="18.0" prefWidth="294.0" text="Start Date">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEndDate" prefHeight="37.0" prefWidth="298.0" text="End Date">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPkgDescription" prefHeight="37.0" prefWidth="302.0" text="Description">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPkgBasePrice" prefHeight="37.0" prefWidth="301.0" text="Base Price">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAgencyCommission" prefHeight="37.0" prefWidth="300.0" text=" Agency Commission">
+                     <padding>
+                        <Insets bottom="9.5" left="9.5" right="9.5" top="9.5" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="300.0" layoutY="100.0" prefHeight="220.0" prefWidth="298.0">
+               <children>
+                  <TextField fx:id="tfPkgName">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfPkgStartDate">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfPkgEndDate">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfPkgDescription">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfPkgBasePrice">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfAgencyCommission">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
