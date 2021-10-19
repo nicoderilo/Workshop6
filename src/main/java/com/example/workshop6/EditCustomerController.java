@@ -169,7 +169,6 @@ public class EditCustomerController {
 
                     alert.showAndWait();
 
-
                     if (numRows == 0)
                     {
                         System.out.println("update failed");
@@ -196,6 +195,9 @@ public class EditCustomerController {
                 alert.setContentText("Add Customer '"+ tfCustFirstName.getText() +"' successful");
 
                 alert.showAndWait();
+                Node source = (Node) mouseEvent.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
             }
 
         }
