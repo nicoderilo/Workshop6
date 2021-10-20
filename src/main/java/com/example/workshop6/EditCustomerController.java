@@ -158,6 +158,7 @@ public class EditCustomerController {
                     stmt.setString(8, tfCustHomePhone.getText());
                     stmt.setString(9, tfCustBusPhone.getText());
                     stmt.setString(10, tfCustEmail.getText());
+                    //stmt.setInt(11, Integer.parseInt(tfAgentId.getText()));
                     stmt.setInt(11, Integer.parseInt(tfAgentId.getText()));
                     stmt.setInt(12, Integer.parseInt(tfCustomerId.getText()));
                     int numRows = stmt.executeUpdate();

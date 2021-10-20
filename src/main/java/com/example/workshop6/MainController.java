@@ -242,16 +242,7 @@ public class MainController {
         displayCounts();
         getCustomers();
     }
-    private void displayCounts() {
-        try {
-            lblCustomers.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
-            lblBookings.setText( "Bookings  "+ Integer.toString((MyFunction.countData("bookings"))));
-            lblPackages.setText( "Packages  "+ Integer.toString((MyFunction.countData("packages"))));
-            //lblInvoices.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } //Display Total Counts
-    }
+
 
     @FXML
     void btnAddInvoices_OnClick(ActionEvent event) {
@@ -272,11 +263,8 @@ public class MainController {
         stage.setTitle("Add Package");
         stage.setScene(new Scene(root1));
         stage.setResizable(false);
-        stage.show();
-
+        stage.showAndWait();
         displayCounts();
-        getPackages();
-        //lblPackages.setText("Packages:" + tvPackages.getItems().size());
     }
 
     @FXML
@@ -848,6 +836,17 @@ public class MainController {
             e.printStackTrace();
         }
 
+    }
+
+    private void displayCounts() {
+        try {
+            lblCustomers.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
+            lblBookings.setText( "Bookings  "+ Integer.toString((MyFunction.countData("bookings"))));
+            lblPackages.setText( "Packages  "+ Integer.toString((MyFunction.countData("packages"))));
+            //lblInvoices.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } //Display Total Counts
     }
 
 }
