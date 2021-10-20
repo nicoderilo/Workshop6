@@ -248,7 +248,12 @@ public class MainController {
     void btnAddInvoices_OnClick(ActionEvent event) {
 
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Add package on button click
+     * Opens the Package view in Insert mode to allow addition of packages
+     * Calls the method addPackage in the package view controller
+     */
     @FXML
     void btnAddPackages_OnClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new
@@ -318,7 +323,12 @@ public class MainController {
     void btnDeleteInvoices_OnClick(ActionEvent event) {
 
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Delete package on button click
+     * Displays an alert and deletes package on confirmation
+     * Calls the method deletePackage which deletes the selected package from the database
+     */
     @FXML
     void btnDeletePackages_OnClick(ActionEvent event) {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
@@ -335,7 +345,7 @@ public class MainController {
                     tvPackages.getItems().remove(selectedIndex);
 
                     displayCounts();
-                    getPackages();
+                    //getPackages();
                     //lblPackages.setText("Packages:" + tvPackages.getItems().size());
                 } else {
                     alert.close();
@@ -405,7 +415,12 @@ public class MainController {
     void btnEditInvoices_OncClick(ActionEvent event) {
 
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Code to Edit package on button click
+     * Opens the Package view in update mode to allow changes to packages
+     * Calls the method displayPackage() in the package view controller and passes the selected package
+     */
     @FXML
     void btnEditPackages_OnClick(ActionEvent event) throws IOException {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
@@ -749,7 +764,11 @@ public class MainController {
         }
     }//getCustomers - End
 
-        //Package data
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method getPackages() that establishes connection to database
+     * Fetches all available packages and displays in the table view
+     */
     private void getPackages() {
         String username = "";
         String password = "";
@@ -790,7 +809,10 @@ public class MainController {
             e.printStackTrace();
         }
     }//getPackages - End*/
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method events() that disables edit and delete buttons until packages is selected
+     */
     private void events() {
         int selectedIndex = tvPackages.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
@@ -798,7 +820,11 @@ public class MainController {
             btnDeletePackages.setDisable(false);
         }
     }
-
+    /**
+     * Author: Sai Shalini Karaikatte Venugopal
+     * Method deletePackage() that connects to the database and deletes selected package
+     * Deletes related data from related tables with foreign key constraints
+     */
     private void deletePackage(String pkgId) throws SQLException {
         String username = "";
         String password = "";
