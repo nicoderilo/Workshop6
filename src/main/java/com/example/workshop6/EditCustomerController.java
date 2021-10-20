@@ -287,18 +287,18 @@ public class EditCustomerController {
             }
         }
 
-//        if (tfAgentId.getText().trim().isEmpty()) {
-//            tfAgentId.setText(null);
-//        }
-
-        //--
-        if(isEmpty(tfAgentId.getText())) {
+        if (tfAgentId.getText().trim().isEmpty()) {
             tfAgentId.setText(null);
         }
-        else if (!tfAgentId.getText().matches("[0-9]\\d*(\\.\\d+)?"))
-        {
-            errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
-        }
+
+        //--
+//        if(isEmpty(tfAgentId.getText())) {
+//            tfAgentId.setText(null);
+//        }
+//        else if (!tfAgentId.getText().matches("[0-9]\\d*(\\.\\d+)?"))
+//        {
+//            errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
+//        }
 
 
 

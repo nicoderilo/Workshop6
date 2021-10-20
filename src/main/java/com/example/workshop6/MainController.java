@@ -475,7 +475,6 @@ public class MainController {
     }
     @FXML
     void btnCustomers_OnClick(ActionEvent event) {
-        getCustomers();
         tpMain.getSelectionModel().select(tab1);
     }
     @FXML
@@ -485,12 +484,12 @@ public class MainController {
     @FXML
     void btnPackages_OnClick(ActionEvent event) {
         tpMain.getSelectionModel().select(tab3);
-        getPackages();
+
         //lblPackages.setText("Packages:"+tvPackages.getItems().size());
     }
     @FXML
     void btnProducts_OnClick(ActionEvent event) {
-        LoadProducts();
+
         tpMain.getSelectionModel().select(tab4);
     }
 
@@ -638,6 +637,7 @@ public class MainController {
         displayCounts();
         getCustomers();
         getPackages();
+        LoadProducts();
 
     }
 
