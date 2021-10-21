@@ -133,28 +133,28 @@ public class MainController {
     private Button btnDeleteBookings; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvBookings"
-    private TableView<?> tvBookings; // Value injected by FXMLLoader
+    private TableView<Booking> tvBookings; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingId"
-    private TableColumn<?, ?> colBookingId; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colBookingId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingDate"
-    private TableColumn<?, ?> colBookingDate; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colBookingDate; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBookingNo"
-    private TableColumn<?, ?> colBookingNo; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colBookingNo; // Value injected by FXMLLoader
 
     @FXML // fx:id="colTravelerCount"
-    private TableColumn<?, ?> colTravelerCount; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colTravelerCount; // Value injected by FXMLLoader
 
     @FXML // fx:id="colCustomerId2"
-    private TableColumn<?, ?> colCustomerId2; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colCustomerId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="colTripTypeId"
-    private TableColumn<?, ?> colTripTypeId; // Value injected by FXMLLoader
+    private TableColumn<Booking, String> colTripTypeId; // Value injected by FXMLLoader
 
     @FXML // fx:id="colPackageId2"
-    private TableColumn<?, ?> colPackageId2; // Value injected by FXMLLoader
+    private TableColumn<Booking, Integer> colPackageId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="tab3"
     private Tab tab3; // Value injected by FXMLLoader
@@ -222,8 +222,21 @@ public class MainController {
 
 
     @FXML
-    void btnAddBookings_OnClick(ActionEvent event) {
+    void btnAddBookings_OnClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new
+                FXMLLoader(getClass().getResource("editbookingdialog.fxml"));
+        Parent root1 = fxmlLoader.load();
+        EditBookingDialogController ebdc = fxmlLoader.getController();
+        ebdc.setBookingData(tvBookings.getItems());
+        ebdc.addBooking();
+        Stage stage = new Stage();
 
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Add Booking");
+        stage.setScene(new Scene(root1));
+        stage.setResizable(false);
+        stage.show();
+        lblBookings.setText("Bookings: " + tvBookings.getItems().size());
     }
 
     @FXML
@@ -294,7 +307,30 @@ public class MainController {
 
 
     @FXML
-    void btnDeleteBookings_OnClick(ActionEvent event) {
+    void btnDeleteBookings_OnClick(ActionEvent event) throws SQLException {
+        int selectedIndex = tvBookings.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >=0) {
+            int bookingId = tvBookings.getSelectionModel().getSelectedItem().getBookingId();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Delete confirmation Dialog");
+            alert.setContentText("Deleting booking will delete corresponding bookingdetails. Are you sure?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                deleteBooking(bookingId);
+                tvBookings.getItems().remove(selectedIndex);
+                lblBookings.setText("Bookings: " + tvBookings.getItems().size());
+            } else {
+                alert.close();
+            }
+
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
 
     }
 
@@ -398,7 +434,30 @@ public class MainController {
     }
 
     @FXML
-    void btnEditBookings_OnClick(ActionEvent event) {
+    void btnEditBookings_OnClick(ActionEvent event) throws IOException {
+        int selectedIndex = tvBookings.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0) {
+            Booking b = this.BookingData.get(selectedIndex);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editbookingdialog.fxml"));
+            Parent root1 = fxmlLoader.load();
+            EditBookingDialogController ebdc = fxmlLoader.getController();
+            ebdc.setBookingData(tvBookings.getItems());
+            ebdc.displayBooking(b, selectedIndex);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Edit Booking");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.show();
+        }
+        else
+        {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
 
     }
 
@@ -503,6 +562,7 @@ public class MainController {
 
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
+    private ObservableList<Booking> BookingData = FXCollections.observableArrayList();
     public ObservableList<Package> PackageData = FXCollections.observableArrayList();
     public ObservableList<Products> ProductData = FXCollections.observableArrayList();
 
@@ -639,6 +699,7 @@ public class MainController {
         //enablechanges();
         displayCounts();
         getCustomers();
+        getBookings();
         getPackages();
         LoadProducts();
 
@@ -718,8 +779,6 @@ public class MainController {
     }
 
 
-
-
     //Customer Data
     private void getCustomers() {
         String username = "";
@@ -763,6 +822,44 @@ public class MainController {
             e.printStackTrace();
         }
     }//getCustomers - End
+
+    private void getBookings(){
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from bookings");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println(rsmd.getColumnCount());
+            while (rs.next())
+            {
+                BookingData.add(new Booking(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7)));
+                colBookingId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingId"));
+                colBookingDate.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingDate"));
+                colBookingNo.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingNo"));
+                colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("travelerCount"));
+                colCustomerId2.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("customerId"));
+                colTripTypeId.setCellValueFactory(new PropertyValueFactory<Booking, String>("tripTypeId"));
+                colPackageId2.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("packageId"));
+                tvBookings.setItems(BookingData);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//getBookings - End
 
     /**
      * Author: Sai Shalini Karaikatte Venugopal
@@ -856,6 +953,43 @@ public class MainController {
             ps.execute();
             System.out.println("Deleted");
             tvPackages.setItems(PackageData);
+            conn.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void deleteBooking(int bookingId) throws SQLException  {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            String sqla = String.format("delete from BookingDetails where BookingId = ?");
+            String  sql = String.format("delete from bookings where BookingId = ?");
+            PreparedStatement preparedStatement1 = conn.prepareStatement(sqla);
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement1.setInt(1, bookingId);
+            preparedStatement.setInt(1, bookingId);
+
+            preparedStatement1.execute();
+            preparedStatement.execute();
+
+            System.out.println("Deleted");
+            tvBookings.setItems(BookingData);
             conn.close();
         }
         catch (SQLException e) {
