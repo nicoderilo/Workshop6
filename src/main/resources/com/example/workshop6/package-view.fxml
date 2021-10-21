@@ -128,7 +128,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfPkgStartDate" text="2001-01-01">
+                  <TextField fx:id="tfPkgStartDate">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -139,7 +139,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfPkgEndDate" text="2001-01-01">
+                  <TextField fx:id="tfPkgEndDate">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -172,7 +172,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfAgencyCommission" text="0">
+                  <TextField fx:id="tfAgencyCommission">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

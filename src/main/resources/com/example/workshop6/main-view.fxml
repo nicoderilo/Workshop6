@@ -110,7 +110,7 @@
                            <children>
                               <HBox prefHeight="160.0" prefWidth="922.0">
                                  <children>
-                                    <Label fx:id="lbCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
+                                    <Label fx:id="lblCustomers" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #cc99ff;" text="Customers 0" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -146,7 +146,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <TabPane id="tpMain" fx:id="tpMain" prefHeight="374.0" prefWidth="924.0" style="-fx-tab-max-height: 20;" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane id="tpMain" fx:id="tpMain" prefHeight="406.0" prefWidth="928.0" style="-fx-tab-max-height: 20;" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                               <Tab id="tab5" fx:id="tab0" text="0">
                                  <content>
@@ -165,36 +165,39 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Label layoutX="384.0" layoutY="14.0" text="CUSTOMERS" />
-                                          <Button fx:id="btnAddCustomers" layoutX="215.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddCustomers_Onclick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Label layoutX="371.0" layoutY="-3.0" text="CUSTOMERS" textFill="#0900b2">
+                                             <font>
+                                                <Font name="System Bold" size="31.0" />
+                                             </font></Label>
+                                          <Button fx:id="btnAddCustomers" layoutX="224.0" layoutY="321.0" mnemonicParsing="false" onAction="#btnAddCustomers_Onclick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditCustomers" layoutX="363.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditCustomers" layoutX="372.0" layoutY="321.0" mnemonicParsing="false" onAction="#btnEditCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteCustomers" layoutX="509.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeleteCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteCustomers" layoutX="518.0" layoutY="321.0" mnemonicParsing="false" onAction="#btnDeleteCustomers_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <TableView fx:id="tvCustomers" layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                          <TableView fx:id="tvCustomers" layoutY="39.0" prefHeight="272.0" prefWidth="928.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
                                             <columns>
-                                              <TableColumn fx:id="colCustomerId" prefWidth="75.0" text="ID" />
-                                              <TableColumn fx:id="colCustFirstName" prefWidth="75.0" text="CustFirstName" />
-                                                <TableColumn fx:id="colCustLastName" prefWidth="75.0" text="CustLastName" />
-                                                <TableColumn fx:id="colCustAddress" prefWidth="75.0" text="CustAddress" />
-                                                <TableColumn fx:id="colCustCity" prefWidth="75.0" text="CustCity" />
-                                                <TableColumn fx:id="colCustProv" prefWidth="75.0" text="CustProv" />
-                                                <TableColumn fx:id="colCustPostal" prefWidth="75.0" text="CustPostal" />
-                                                <TableColumn fx:id="colCustCountry" prefWidth="75.0" text="CustCountry" />
-                                                <TableColumn fx:id="colCustHomePhone" prefWidth="75.0" text="CustHomePhone" />
-                                                <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="CustBusPhone" />
-                                                <TableColumn fx:id="colCustEmail" prefWidth="75.0" text="CustEmail" />
-                                                <TableColumn fx:id="colAgentId" prefWidth="75.0" text="AgentId " />
+                                              <TableColumn fx:id="colCustomerId" prefWidth="36.0" text="ID" />
+                                              <TableColumn fx:id="colCustFirstName" prefWidth="114.0" text="FName" />
+                                                <TableColumn fx:id="colCustLastName" prefWidth="75.0" text="LName" />
+                                                <TableColumn fx:id="colCustAddress" prefWidth="118.0" text="Address" />
+                                                <TableColumn fx:id="colCustCity" prefWidth="57.0" text="City" />
+                                                <TableColumn fx:id="colCustProv" minWidth="-1.0" prefWidth="50.0" text="Prov" />
+                                                <TableColumn fx:id="colCustPostal" prefWidth="75.0" text="Postal" />
+                                                <TableColumn fx:id="colCustCountry" prefWidth="75.0" text="Country" />
+                                                <TableColumn fx:id="colCustHomePhone" prefWidth="75.0" text="HPhone" />
+                                                <TableColumn fx:id="colCustBusPhone" prefWidth="75.0" text="BPhone" />
+                                                <TableColumn fx:id="colCustEmail" prefWidth="119.0" text="Email" />
+                                                <TableColumn fx:id="colAgentId" prefWidth="58.0" text="AID" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -220,7 +223,10 @@
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Label layoutX="370.0" layoutY="14.0" text="Bookings" />
+                                          <Label layoutX="369.0" text="Bookings" textFill="#0216b2">
+                                             <font>
+                                                <Font name="System Bold" size="31.0" />
+                                             </font></Label>
                                           <TableView fx:id="tvBookings" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                             <columns>
                                               <TableColumn fx:id="colBookingId" prefWidth="75.0" text="BookingId " />
@@ -238,33 +244,36 @@
                             </Tab>
                               <Tab id="tab3" fx:id="tab3" text="3">
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="928.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Button fx:id="btnAddPackages" layoutX="197.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
+                                          <Button fx:id="btnAddPackages" layoutX="227.0" layoutY="314.0" mnemonicParsing="false" onAction="#btnAddPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditPackages" disable="true" layoutX="343.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditPackages" disable="true" layoutX="373.0" layoutY="314.0" mnemonicParsing="false" onAction="#btnEditPackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeletePackages" disable="true" layoutX="489.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeletePackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeletePackages" disable="true" layoutX="519.0" layoutY="314.0" mnemonicParsing="false" onAction="#btnDeletePackages_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Label layoutX="366.0" layoutY="14.0" text="Packages" />
-                                          <TableView fx:id="tvPackages" layoutX="61.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <Label layoutX="372.0" layoutY="7.0" text="Packages" textFill="#0216b2">
+                                             <font>
+                                                <Font name="System Bold" size="31.0" />
+                                             </font></Label>
+                                          <TableView fx:id="tvPackages" layoutX="61.0" layoutY="62.0" prefHeight="238.0" prefWidth="928.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                              <columns>
                                                 <TableColumn fx:id="colPackageId" prefWidth="75.0" text="ID" />
-                                                <TableColumn fx:id="colPkgName" prefWidth="75.0" text="Name" />
-                                                <TableColumn fx:id="colPkgStartDate" prefWidth="75.0" text="Start Date" />
-                                                <TableColumn fx:id="colPkgEndDate" prefWidth="75.0" text="End Date" />
-                                                <TableColumn fx:id="colPkgDesc" prefWidth="75.0" text="Description" />
-                                                <TableColumn fx:id="colPkgBasePrice" prefWidth="75.0" text="Base Price" />
-                                                <TableColumn fx:id="colPkgAgencyCommission" prefWidth="75.0" text="AgencyCommision" />
+                                                <TableColumn fx:id="colPkgName" prefWidth="124.0" text="Name" />
+                                                <TableColumn fx:id="colPkgStartDate" prefWidth="103.0" text="Start Date" />
+                                                <TableColumn fx:id="colPkgEndDate" prefWidth="111.0" text="End Date" />
+                                                <TableColumn fx:id="colPkgDesc" prefWidth="175.0" text="Description" />
+                                                <TableColumn fx:id="colPkgBasePrice" prefWidth="150.0" text="Base Price" />
+                                                <TableColumn fx:id="colPkgAgencyCommission" prefWidth="169.0" text="AgencyCommision" />
                                              </columns>
                                           </TableView>
                                        </children>
@@ -275,7 +284,10 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Label layoutX="359.0" layoutY="14.0" text="Products" />
+                                          <Label layoutX="359.0" layoutY="4.0" text="Products" textFill="#0216b2">
+                                             <font>
+                                                <Font name="System Bold" size="31.0" />
+                                             </font></Label>
                                           <Button fx:id="btnAddProducts" layoutX="195.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnAddProducts_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
@@ -291,10 +303,10 @@
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <TableView fx:id="tvProducts" layoutY="39.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                          <TableView fx:id="tvProducts" layoutX="235.0" layoutY="63.0" prefHeight="200.0" prefWidth="372.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="321.0">
                                             <columns>
-                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="ProductId" />
-                                              <TableColumn fx:id="colProductName" prefWidth="75.0" text="ProductName" />
+                                              <TableColumn fx:id="colProductId" prefWidth="171.0" text="ProductId" />
+                                              <TableColumn fx:id="colProductName" prefWidth="199.0" text="ProductName" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -305,7 +317,10 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
-                                          <Label layoutX="359.0" layoutY="14.0" text="Invoices" />
+                                          <Label layoutX="405.0" layoutY="2.0" text="Invoices" textFill="#22039e">
+                                             <font>
+                                                <Font name="System Bold" size="31.0" />
+                                             </font></Label>
                                           <Button fx:id="btnAddInvoices" layoutX="198.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnAddInvoices_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="ADD" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />

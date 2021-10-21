@@ -1,5 +1,14 @@
 /**
- * Sample Skeleton for 'package-view.fxml' Controller Class
+ * Author: Sai Shalini Karaikatte Venugopal
+ * Date: 2021/10/18
+ * Course Module: PROJ207A_CMPP264_Java_Workshop6
+ * Assignment name: Threaded Project for OOSD_Term3_Workshop6_Group1
+ */
+
+
+/**
+ * Skeleton for 'package-view.fxml' Controller Class
+ * Consists of Package details which allows addition or update of Packages
  */
 
 package com.example.workshop6;
@@ -9,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -90,25 +101,21 @@ public class PackageViewController {
         this.data = data ;
     }
 
-    public void displayPackage(Package p, int i) {
-        mode = "update";
-        this.tfPkgName.focusedProperty();
-        this.tfPackageId.setText(p.getPkgId());
-        this.tfPkgName.setText(p.getPkgName());
-        this.tfPkgStartDate.setText(p.getPkgStartDate());
-        this.tfPkgEndDate.setText(p.getPkgEndDate());
-        this.tfPkgDescription.setText(p.getPkgDescription());
-        this.tfPkgBasePrice.setText(p.getPkgBasePrice());
-        this.tfAgencyCommission.setText(p.getPkgAgencyCommission());
-        index= i;
-    }
-
+    /**
+     * If Cancel button is clicked closes the package view
+     */
     @FXML
     void onClickCancel(MouseEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Code to Save package details on button click
+     * Establishes connection to database and inserts or updates the Packages table according to the mode
+     * Calls the method validate() to ensure that false data is not entered into the database
+     * @throws ParseException
+     */
     @FXML
     void onClickSave(MouseEvent event) throws ParseException {
         boolean valid = validate();
@@ -197,47 +204,127 @@ public class PackageViewController {
         assert tfPkgBasePrice != null : "fx:id=\"tfPkgBasePrice\" was not injected: check your FXML file 'package-view.fxml'.";
         assert tfAgencyCommission != null : "fx:id=\"tfAgencyCommission\" was not injected: check your FXML file 'package-view.fxml'.";
 
+
     }
 
+    /**
+     * If Add button is clicked on the Main Controller this method
+     * makes the text field and label for PackageId invisible
+     * Sets the mode to insert
+     */
     public void addPackage() {
         mode= "insert";
         vbPkgId.setVisible(false);
     }
+
+    /**
+     * If Edit button is clicked on the Main Controller this method
+     * displays the details of the selected package
+     * Accepts the package array and selected index as parameters
+     * Sets the mode to update
+     */
+    public void displayPackage(Package p, int i) {
+        mode = "update";
+        this.tfPkgName.focusedProperty();
+        this.tfPackageId.setText(p.getPkgId());
+        this.tfPkgName.setText(p.getPkgName());
+        this.tfPkgStartDate.setText(p.getPkgStartDate());
+        this.tfPkgEndDate.setText(p.getPkgEndDate());
+        this.tfPkgDescription.setText(p.getPkgDescription());
+        this.tfPkgBasePrice.setText(p.getPkgBasePrice());
+        this.tfAgencyCommission.setText(p.getPkgAgencyCommission());
+        index= i;
+    }
+
+    /**
+     * Method validate() that verifies that valid input is entered into the database
+     * @return
+     * @throws ParseException
+     */
     public boolean validate() throws ParseException {
 
         StringBuilder errors = new StringBuilder();
 
-        // Confirm mandatory fields are filled out
+        // Mandatory field validation
         if (tfPkgName.getText().trim().isEmpty()) {
             errors.append("- Please enter a Package name.\n");
         }
 
-        if (!(tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
-            errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
-        }
-        if (!(tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
-            errors.append("- Please enter a valid End date in the format YYYY-MM-DD.\n");
+        //Validate Start Date if not empty
+        if( isEmpty(tfPkgStartDate.getText())){
+            tfPkgStartDate.setText(null);
+        } else {
+            if (!(tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
+                errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
+            }
+
         }
 
+        //Validate End Date if not empty
+        if(isEmpty(tfPkgEndDate.getText())){
+            tfPkgEndDate.setText(null);
+        }else {
+            if (!(tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
+                errors.append("- Please enter a valid End date in the format YYYY-MM-DD.\n");
+            }
+        }
+
+        //If Start date is not empty and is of proper date format
+        //validate that Start date is not a past date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        if(!isEmpty(tfPkgStartDate.getText()))
+        {
+            if(tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))
+            {
+                if(sdf.parse(String.valueOf(LocalDate.now())).compareTo(sdf.parse(tfPkgStartDate.getText().substring(0,10))) > 0) {
+                    errors.append("- Start date cannot be in the past.\n");
+                }
+            }
+        }
+
+        //If both Start Date and End Date are entered and are valid dates
+        //validate that Start Date is not greater than End Date
+        if(!isEmpty(tfPkgStartDate.getText()) && !isEmpty(tfPkgEndDate.getText())) {
+            if (tfPkgStartDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)") &&
+                    tfPkgEndDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)")) {
+                if (sdf.parse(tfPkgStartDate.getText().substring(0,10)).compareTo(sdf.parse(tfPkgEndDate.getText().substring(0,10))) > 0) {
+                    errors.append("- Start date is after End date.\n");
+                }
+            }
+        }
+
+        //Mandatory field validation
         if (tfPkgBasePrice.getText().trim().isEmpty()) {
             errors.append("- Please enter Base Price.\n");
         }
 
+        //Validate that Base price is an Integer or Decimal
         if (!tfPkgBasePrice.getText().trim().isEmpty() && !tfPkgBasePrice.getText().matches("[1-9]\\d*(\\.\\d+)?"))
         {
             errors.append("- Please enter Base Price as an Integer or Decimal.\n");
         }
 
-        if (!tfAgencyCommission.getText().matches("[0-9]\\d*(\\.\\d+)?"))
+        //If Agency commission is entered validate that it is an Integer or Decimal
+        //if entered and valid , check that Agency commission is not greater than Base price
+        if(isEmpty(tfAgencyCommission.getText())) {
+            tfAgencyCommission.setText(null);
+        }
+        else if (!tfAgencyCommission.getText().matches("[0-9]\\d*(\\.\\d+)?"))
         {
             errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
+        }
+        else if ((Double.parseDouble(tfAgencyCommission.getText()) > Double.parseDouble(tfPkgBasePrice.getText())))
+        {
+            errors.append("- Agency commission cannot be greater than Base price.\n");
+
         }
 
         // If any missing information is found, show the error messages and return false
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Required Fields Empty");
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter appropriate values");
             alert.setContentText(errors.toString());
 
             alert.showAndWait();
@@ -246,4 +333,17 @@ public class PackageViewController {
         // No errors
         return true;
     }
+
+    /**
+     * Function to check if input field is null or empty
+     * @param val
+     * @return
+     */
+    boolean isEmpty(String val) {
+        if (val == null || val.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
 }
