@@ -137,6 +137,7 @@ public class EditBookingDialogController {
         }
     }
 
+    //get package id
     private void getPackageId() {
         String username = "";
         String password ="";
