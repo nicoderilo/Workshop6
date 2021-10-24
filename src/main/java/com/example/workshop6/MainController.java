@@ -218,8 +218,31 @@ public class MainController {
     private Button btnDeleteInvoices; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvInvoices"
-    private TableView<?> tvInvoices; // Value injected by FXMLLoader
+    private TableView<Invoices_View> tvInvoices; // Value injected by FXMLLoader
 
+    @FXML // fx:id="colCustFirstNameInv"
+    private TableColumn<Invoices_View, String> colCustFirstNameInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colCustEmailInv"
+    private TableColumn<Invoices_View, String> colCustEmailInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colBookingDateInv"
+    private TableColumn<Invoices_View, String> colBookingDateInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colBookingNoInv"
+    private TableColumn<Invoices_View, String> colBookingNoInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colTripStartInv"
+    private TableColumn<Invoices_View, String> colTripStartInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colTripEndInv"
+    private TableColumn<Invoices_View, String> colTripEndInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colDescriptionInv"
+    private TableColumn<Invoices_View, String> colDescriptionInv; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colBasePriceInv"
+    private TableColumn<Invoices_View, String> colBasePriceInv; // Value injected by FXMLLoader
 
     @FXML
     void btnAddBookings_OnClick(ActionEvent event) throws IOException {
@@ -253,14 +276,36 @@ public class MainController {
         stage.close();
 
         displayCounts();
-        getCustomers();
+        //getCustomers();
     }
 
 
     @FXML
-    void btnAddInvoices_OnClick(ActionEvent event) {
-
+    void btnAddInvoices_OnClick(ActionEvent event) throws IOException {
+        int selectedIndex = tvInvoices.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0) {
+            Invoices_View iv = this.Invoices_ViewData.get(selectedIndex);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("invoice-view.fxml"));
+            Parent root1 = fxmlLoader.load();
+            InvoiceViewController ivc = fxmlLoader.getController();
+            ivc.setInvoiceViewData(tvInvoices.getItems());
+            ivc.displayInvoice(iv, selectedIndex);
+            Stage stage = new Stage();
+            //set what you want on your stage
+            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.setTitle("Edit Package");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+            stage.show();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
     }
+
     /**
      * Author: Sai Shalini Karaikatte Venugopal
      * Code to Add package on button click
@@ -565,6 +610,7 @@ public class MainController {
     private ObservableList<Booking> BookingData = FXCollections.observableArrayList();
     public ObservableList<Package> PackageData = FXCollections.observableArrayList();
     public ObservableList<Products> ProductData = FXCollections.observableArrayList();
+    public ObservableList<Invoices_View> Invoices_ViewData = FXCollections.observableArrayList();
 
     //HOVERS EFFECTS - START
     @FXML
@@ -630,6 +676,7 @@ public class MainController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
         assert btnHome != null : "fx:id=\"btnHome\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnCustomers != null : "fx:id=\"btnCustomers\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnBookings != null : "fx:id=\"btnBookings\" was not injected: check your FXML file 'main-view.fxml'.";
@@ -695,15 +742,27 @@ public class MainController {
         assert btnEditInvoices != null : "fx:id=\"btnEditInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert btnDeleteInvoices != null : "fx:id=\"btnDeleteInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
         assert tvInvoices != null : "fx:id=\"tvInvoices\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colCustFirstNameInv != null : "fx:id=\"colCustFirstNameInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colCustEmailInv != null : "fx:id=\"colCustEmailInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colBookingDateInv != null : "fx:id=\"colBookingDateInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colBookingNoInv != null : "fx:id=\"colBookingNoInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colTripStartInv != null : "fx:id=\"colTripStartInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colTripEndInv != null : "fx:id=\"colTripEndInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colDescriptionInv != null : "fx:id=\"colDescriptionInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colBasePriceInv != null : "fx:id=\"colBasePriceInv\" was not injected: check your FXML file 'main-view.fxml'.";
+
 
         //enablechanges();
         displayCounts();
         getCustomers();
         getBookings();
         getPackages();
+        getInvoices_View();
         LoadProducts();
 
     }
+
+
 
     private void onCustomerOpenDialog(int selectedIndex) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editcustomer.fxml"));
@@ -998,12 +1057,51 @@ public class MainController {
 
     }
 
+    private void getInvoices_View() {
+        String username = "";
+        String password = "";
+        String url = "";
+        try {
+            FileInputStream fis = new FileInputStream("c:\\connection.properties");
+            Properties p = new Properties();
+            p.load(fis);
+            username = (String) p.get("user");
+            password = (String) p.get("password");
+            url = (String) p.get("URL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from invoices_view");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println(rsmd.getColumnCount());
+            while (rs.next())
+            {
+                Invoices_ViewData.add(new Invoices_View(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                colCustFirstNameInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("CustFirstNameInv"));
+                colCustEmailInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("CustEmailInv"));
+                colBookingDateInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("BookingDateInv"));
+                colBookingNoInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("BookingNoInv"));
+                colTripStartInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("TripStartInv"));
+                colTripEndInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("TripEndInv"));
+                colDescriptionInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("DescriptionInv"));
+                colBasePriceInv.setCellValueFactory(new PropertyValueFactory<Invoices_View, String>("BasePriceInv"));
+                tvInvoices.setItems(Invoices_ViewData);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void displayCounts() {
         try {
             lblCustomers.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
             lblBookings.setText( "Bookings  "+ Integer.toString((MyFunction.countData("bookings"))));
             lblPackages.setText( "Packages  "+ Integer.toString((MyFunction.countData("packages"))));
-            //lblInvoices.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));
+            lblInvoices.setText( "Invoices  "+ Integer.toString((MyFunction.countData("Invoices_View"))));
         } catch (SQLException e) {
             e.printStackTrace();
         } //Display Total Counts
