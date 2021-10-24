@@ -326,12 +326,12 @@
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnEditInvoices" layoutX="350.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditInvoices_OncClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
+                                          <Button fx:id="btnEditInvoices" disable="true" layoutX="350.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnEditInvoices_OncClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="EDIT" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnDeleteInvoices" layoutX="501.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeleteInvoices_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
+                                          <Button fx:id="btnDeleteInvoices" disable="true" layoutX="501.0" layoutY="289.0" mnemonicParsing="false" onAction="#btnDeleteInvoices_OnClick" prefHeight="42.0" prefWidth="133.0" style="-fx-background-color: #0099cc;" text="DELETE" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
