@@ -110,12 +110,12 @@
             </VBox>
             <VBox alignment="TOP_CENTER" layoutX="532.0" prefHeight="424.0" prefWidth="400.0" style="-fx-background-color: #e6ebed;">
                <children>
-                  <TextArea fx:id="taAll" editable="false" prefHeight="156.0" prefWidth="342.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #bebebe;" VBox.vgrow="NEVER">
+                  <TextArea fx:id="taAll" editable="false" prefHeight="221.0" prefWidth="360.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #bebebe;" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextArea>
                   <HBox alignment="CENTER" prefHeight="59.0" prefWidth="400.0">

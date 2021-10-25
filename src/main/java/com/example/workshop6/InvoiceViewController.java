@@ -105,7 +105,7 @@ public class InvoiceViewController {
         this.tfTripEndInv.setText(iv.getTripEndInv());
         this.tfDescriptionInv.setText(iv.getDescriptionInv());
         this.tfBasePriceInv.setText(iv.getBasePriceInv());
-        this.taAll.setText("Hello, " + iv.getCustFirstNameInv() + "! \n\n" + "Invoice Number    : "+ "INV" +iv.getBookingNoInv() +"\n"+ "Thank you for choosing us! \n"+ "Total Amount     : $" + iv.getBasePriceInv() );
+        this.taAll.setText("Hello, " + iv.getCustFirstNameInv() + "! \n\n"+ "Thank you for choosing us! \n\n" + "Invoice Number    : "+ "INV" +iv.getBookingNoInv() +"\n" + "Total Amount     : $" + iv.getBasePriceInv() );
         int index = i;
     }
 }
