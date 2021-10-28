@@ -128,7 +128,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="tfPkgStartDate">
+                  <TextField fx:id="tfPkgStartDate" promptText="YYYY-MM-DD">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

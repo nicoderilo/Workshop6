@@ -49,8 +49,14 @@ public class EditBookingDialogController {
     @FXML // fx:id="cbCustomerId2"
     private ComboBox<Integer> cbCustomerId2; // Value injected by FXMLLoader
 
+    @FXML // fx:id="tfCustId"
+    private TextField tfCustID; // Value injected by FXMLLoader
+
     @FXML // fx:id="cbTripTypeId"
     private ComboBox<String> cbTripTypeId; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tfTriptypeId"
+    private TextField tfTriptypeId; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbPackageId2"
     private ComboBox<Integer> cbPackageId2; // Value injected by FXMLLoader
@@ -75,11 +81,16 @@ public class EditBookingDialogController {
         this.tfBookingDate.setText(b.getBookingDate());
         this.tfBookingNo.setText(b.getBookingNo());
         this.tfTravelerCount.setText(b.getTravelerCount() + "");
-        getTripTypeId();
+        //getTripTypeId();
         getPackageId();
-        getCustomerId();
-        //this.cbCustomerId2.getSelectionModel().isSelected("b.getCustomerId()");
+        //getCustomerId();
+        //this.cbCustomerId2.getSelectionModel().isSelected(""b.gCustomerId()"");
         //this.cbTripTypeId.getSelectionModel().isSelected(b.getTripTypeId());
+        cbCustomerId2.setVisible(false);
+        this.tfCustID.setText(b.getCustomerId() + "");
+        cbTripTypeId.setVisible(false);
+        this.tfTriptypeId.setText(b.getTripTypeId());
+        //cbPackageId2.setVisible(false);
         this.cbPackageId2.setValue(b.getPackageId());
         index = selectedIndex;
     }
@@ -92,6 +103,8 @@ public class EditBookingDialogController {
         assert tfBookingDate != null : "fx:id=\"tfBookingDate\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
         assert tfBookingNo != null : "fx:id=\"tfBookingNo\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
         assert tfTravelerCount != null : "fx:id=\"tfTravelerCount\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
+        assert tfCustID != null : "fx:id=\"tfTravelerCount\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
+        assert tfTriptypeId != null : "fx:id=\"tfTravelerCount\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
         assert btnSave != null : "fx:id=\"btnSave\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
         assert cbCustomerId2 != null : "fx:id=\"cbCustomerId2\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
         assert cbTripTypeId != null : "fx:id=\"cbTripTypeId\" was not injected: check your FXML file 'editbookingdialog.fxml'.";
@@ -167,7 +180,7 @@ public class EditBookingDialogController {
 
             ObservableList data2 = FXCollections.observableArrayList();
             while(rs.next()){
-                data2.add(new String(rs.getString(1)));
+                data2.add((rs.getInt(1)));
             }
             cbPackageId2.setItems(data2);
         }
@@ -199,7 +212,7 @@ public class EditBookingDialogController {
 
             ObservableList data1 = FXCollections.observableArrayList();
             while(rs.next()){
-                data1.add(new String(rs.getString(1)));
+                data1.add(rs.getInt(1));
             }
             cbCustomerId2.setItems(data1);
         }
@@ -232,8 +245,8 @@ public class EditBookingDialogController {
                     stmt.setString(1, tfBookingDate.getText());
                     stmt.setString(2, tfBookingNo.getText());
                     stmt.setInt(3, Integer.parseInt(tfTravelerCount.getText()));
-                    stmt.setInt(4, Integer.parseInt(String.valueOf(cbCustomerId2.getValue())));
-                    stmt.setString(5, (String) cbTripTypeId.getValue());
+                    stmt.setInt(4, Integer.parseInt(tfCustID.getText()));
+                    stmt.setString(5, tfTriptypeId.getText());
                     stmt.setInt(6, Integer.parseInt(String.valueOf(cbPackageId2.getValue())));
                     stmt.setInt(7, Integer.parseInt(tfBookingId.getText()));
                     int numRows = stmt.executeUpdate();
@@ -242,7 +255,7 @@ public class EditBookingDialogController {
                         System.out.println("Update Failed");
                     }
 
-                    Booking b = new Booking(Integer.parseInt(tfBookingId.getText()), tfBookingDate.getText(), tfBookingNo.getText(), Integer.parseInt(tfTravelerCount.getText()), Integer.parseInt(String.valueOf(cbCustomerId2.getValue())), (String) cbTripTypeId.getValue(), Integer.parseInt(String.valueOf(cbPackageId2.getValue())));
+                    Booking b = new Booking(Integer.parseInt(tfBookingId.getText()), tfBookingDate.getText(), tfBookingNo.getText(), Integer.parseInt(tfTravelerCount.getText()), Integer.parseInt(String.valueOf(tfCustID.getText())), tfTriptypeId.getText(), Integer.parseInt(String.valueOf(cbPackageId2.getValue())));
                     data.set(index, b);
                     Stage stage = (Stage) btnSave.getScene().getWindow();
                     stage.close();
@@ -267,7 +280,7 @@ public class EditBookingDialogController {
                             bkid = rs.getInt(1);
                         }
                     }
-                    Booking b = new Booking(bkid, tfBookingDate.getText(), tfBookingNo.getText(), Integer.parseInt(tfTravelerCount.getText()), Integer.parseInt(String.valueOf(cbCustomerId2.getValue())), (String) cbTripTypeId.getValue(), Integer.parseInt(String.valueOf(cbPackageId2.getValue())));
+                    Booking b = new Booking(bkid, tfBookingDate.getText(), tfBookingNo.getText(), Integer.parseInt(tfTravelerCount.getText()), Integer.parseInt(String.valueOf(cbCustomerId2.getValue())), (String) cbTripTypeId.getValue(), Integer.parseInt((cbPackageId2.getValue().toString())));
                     data.add(b);
                     Stage stage = (Stage) btnSave.getScene().getWindow();
                     stage.close();
@@ -324,6 +337,12 @@ public class EditBookingDialogController {
             }
         }
 
+        if (mode== "update")
+        {
+            if (cbPackageId2.getValue() == 0) {
+                errors.append("- Please select a valid  Package Id\n");
+            }
+        }
 
 
 

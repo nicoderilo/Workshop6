@@ -289,8 +289,16 @@ public class EditCustomerController {
         }
 
         if (tfAgentId.getText().trim().isEmpty()) {
-            tfAgentId.setText(null);
+            errors.append("- Please enter an AgentID.\n");
         }
+        else if (!tfAgentId.getText().matches("[0-9]\\d*(\\.\\d+)?")) {
+            errors.append("- Please enter Agent Id as an Integer.\n");
+        }
+        else if (Integer.parseInt(tfAgentId.getText()) < 1 || Integer.parseInt(tfAgentId.getText()) > 9 )
+        {
+            errors.append("- Agent Id does not exist.\n");
+        }
+
 
         //--
 //        if(isEmpty(tfAgentId.getText())) {
