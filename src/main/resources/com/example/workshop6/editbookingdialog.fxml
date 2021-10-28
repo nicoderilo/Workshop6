@@ -6,7 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+
 <!--edit-->
+
 <AnchorPane prefHeight="344.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.EditBookingDialogController">
    <children>
       <Label layoutX="108.0" layoutY="8.0" text="Edit Booking Dialog">
@@ -50,7 +52,7 @@
          </font>
       </Label>
       <TextField fx:id="tfBookingId" layoutX="196.0" layoutY="48.0" />
-      <TextField fx:id="tfBookingDate" layoutX="196.0" layoutY="82.0" />
+      <TextField fx:id="tfBookingDate" layoutX="196.0" layoutY="82.0" promptText="YYYY-MM-DD" />
       <TextField fx:id="tfBookingNo" layoutX="196.0" layoutY="117.0" />
       <TextField fx:id="tfTravelerCount" layoutX="197.0" layoutY="152.0" />
       <Button fx:id="btnSave" layoutX="161.0" layoutY="305.0" mnemonicParsing="false" style="-fx-background-color: #0099cc;" text="Save">
@@ -61,5 +63,7 @@
       <ComboBox fx:id="cbCustomerId2" layoutX="197.0" layoutY="188.0" prefWidth="150.0" />
       <ComboBox fx:id="cbTripTypeId" layoutX="197.0" layoutY="226.0" prefWidth="150.0" />
       <ComboBox fx:id="cbPackageId2" layoutX="197.0" layoutY="262.0" prefWidth="150.0" />
+      <TextField fx:id="tfCustID" disable="true" layoutX="197.0" layoutY="188.0" />
+      <TextField fx:id="tfTriptypeId" disable="true" layoutX="197.0" layoutY="225.0" />
    </children>
 </AnchorPane>
