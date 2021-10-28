@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -45,13 +47,13 @@ public class EditBookingDialogController {
     private TextField tfTravelerCount; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbCustomerId2"
-    private ComboBox<Customer> cbCustomerId2; // Value injected by FXMLLoader
+    private ComboBox<Integer> cbCustomerId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbTripTypeId"
-    private ComboBox<?> cbTripTypeId; // Value injected by FXMLLoader
+    private ComboBox<String> cbTripTypeId; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbPackageId2"
-    private ComboBox<Package> cbPackageId2; // Value injected by FXMLLoader
+    private ComboBox<Integer> cbPackageId2; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnSave"
     private Button btnSave; // Value injected by FXMLLoader
@@ -73,9 +75,12 @@ public class EditBookingDialogController {
         this.tfBookingDate.setText(b.getBookingDate());
         this.tfBookingNo.setText(b.getBookingNo());
         this.tfTravelerCount.setText(b.getTravelerCount() + "");
-        this.cbCustomerId2.getValue();
-        this.cbTripTypeId.getValue();
-        this.cbPackageId2.getValue();
+        getTripTypeId();
+        getPackageId();
+        getCustomerId();
+        //this.cbCustomerId2.getSelectionModel().isSelected("b.getCustomerId()");
+        //this.cbTripTypeId.getSelectionModel().isSelected(b.getTripTypeId());
+        this.cbPackageId2.setValue(b.getPackageId());
         index = selectedIndex;
     }
 
@@ -285,14 +290,48 @@ public class EditBookingDialogController {
         StringBuilder errors = new StringBuilder();
 
         // Confirm mandatory fields are filled out
+//("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))
+//        if (!(tfBookingDate.getText().matches("^\\d{4}-\\d{2}-\\d{2}$"))) {
+//            errors.append("- Please enter a valid date in the format YYYY-MM-DD\n");
+//        }
 
-        if (!(tfBookingDate.getText().matches("^\\d{4}-\\d{2}-\\d{2}$"))) {
-            errors.append("- Please enter a valid date in the format YYYY-MM-DD\n");
-        }
 
         if (tfBookingNo.getText().trim().isEmpty()) {
             errors.append("- Please enter booking number.\n");
         }
+
+        //Validate Start Date if not empty
+        if( isEmpty(tfBookingDate.getText())){
+            tfBookingDate.setText(null);
+        } else {
+            if (!(tfBookingDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
+                errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
+            }
+
+        }
+
+        if (mode == "insert") {
+            if (cbCustomerId2.getSelectionModel().isEmpty()) {
+                errors.append("- Please select a customer Id\n");
+            }
+
+            if (cbTripTypeId.getSelectionModel().isEmpty()) {
+                errors.append("- Please select a trip type Id\n");
+            }
+
+            if (cbPackageId2.getSelectionModel().isEmpty()) {
+                errors.append("- Please select a Package Id\n");
+            }
+        }
+
+
+
+
+//
+//        if (t.getText().trim().isEmpty()) {
+//            errors.append("- Please enter booking number.\n");
+//        }
+
 
         /*if (tfTravelerCount.getText().trim().isEmpty() || !tfTravelerCount.getText().matches("^[1-9]\\?[0-9]+$"))
         {
@@ -311,5 +350,16 @@ public class EditBookingDialogController {
         }
         // If there is no error
         return true;
+    }
+    /**
+     * Function to check if input field is null or empty
+     * @param val
+     * @return
+     */
+    boolean isEmpty(String val) {
+        if (val == null || val.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

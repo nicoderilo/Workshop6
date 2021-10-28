@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="194.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.ProductViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="194.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.ProductViewController">
    <children>
       <Button fx:id="btnSaveEdit" layoutX="60.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Save">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="tfProdId" layoutX="15.0" layoutY="26.0" prefHeight="25.0" prefWidth="165.0" promptText="Product ID (Auto Generted)" />
+      <TextField fx:id="tfProdId" disable="true" layoutX="15.0" layoutY="26.0" prefHeight="25.0" prefWidth="165.0" promptText="Product ID (Auto Generted)" />
       <TextField fx:id="tfProdName" layoutX="15.0" layoutY="78.0" prefHeight="25.0" prefWidth="165.0" promptText="Product Name" />
    </children>
 </AnchorPane>

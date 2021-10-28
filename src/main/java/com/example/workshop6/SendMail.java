@@ -1,5 +1,7 @@
 package com.example.workshop6;
 
+import javafx.scene.control.Alert;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 //import javax.mail.Session;
@@ -39,6 +41,11 @@ public class SendMail {
 
             Transport.send(message);
             System.out.println("Message Sent");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Email sent!");
+            alert.showAndWait();
+
         } catch (MessagingException e) {
             System.out.println(e);
         }
