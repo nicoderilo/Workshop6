@@ -318,7 +318,7 @@ public class EditBookingDialogController {
             tfBookingDate.setText(null);
         } else {
             if (!(tfBookingDate.getText().matches("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))) {
-                errors.append("- Please enter a valid Start date in the format YYYY-MM-DD.\n");
+                errors.append("- Please enter a valid Booking date in the format YYYY-MM-DD.\n");
             }
 
         }
