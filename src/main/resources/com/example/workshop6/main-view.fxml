@@ -146,9 +146,9 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <TabPane id="tpMain" fx:id="tpMain" prefHeight="406.0" prefWidth="928.0" style="-fx-tab-max-height: 20;" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane id="tpMain" fx:id="tpMain" prefHeight="406.0" prefWidth="928.0" style="-fx-tab-max-height: 0;" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                              <Tab id="tab5" fx:id="tab0" text="0">
+                              <Tab id="tab5" fx:id="tab0" style="-fx-tab-max-height: -20;">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
@@ -161,7 +161,7 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                            <Tab id="tab1" fx:id="tab1" text="1">
+                            <Tab id="tab1" fx:id="tab1" style="-fx-tab-max-height: -20;">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
@@ -204,7 +204,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                            <Tab id="tab2" fx:id="tab2" style="-fx-tab-max-height: 0;" text="2">
+                            <Tab id="tab2" fx:id="tab2" style="-fx-tab-max-height: -20;">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
@@ -227,7 +227,7 @@
                                              <font>
                                                 <Font name="System Bold" size="31.0" />
                                              </font></Label>
-                                          <TableView fx:id="tvBookings" layoutX="74.0" layoutY="46.0" prefHeight="200.0" prefWidth="762.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="92.0">
+                                          <TableView fx:id="tvBookings" layoutX="74.0" layoutY="46.0" prefHeight="200.0" prefWidth="769.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="85.0">
                                             <columns>
                                               <TableColumn fx:id="colBookingId" prefWidth="86.0" style="-fx-alignment: CENTER;" text="BookingId " />
                                               <TableColumn fx:id="colBookingDate" prefWidth="166.0" style="-fx-alignment: CENTER;" text="BookingDate" />
@@ -242,7 +242,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                              <Tab id="tab3" fx:id="tab3" text="3">
+                              <Tab id="tab3" fx:id="tab3" style="-fx-tab-max-height: -20;">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="928.0" style="-fx-background-color: white;">
                                        <children>
@@ -280,7 +280,7 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                              <Tab id="tab4" fx:id="tab4" text="4">
+                              <Tab id="tab4" fx:id="tab4" style="-fx-tab-max-height: -20;">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
@@ -313,7 +313,7 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                              <Tab id="tab5" fx:id="tab5" text="5">
+                              <Tab id="tab5" fx:id="tab5" style="-fx-tab-max-height: -20;">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                        <children>
