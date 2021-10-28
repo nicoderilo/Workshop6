@@ -381,23 +381,34 @@ public class MainController {
 
     @FXML
     void btnDeleteCustomers_OnClick(ActionEvent event) throws SQLException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Customer");
-        alert.setHeaderText("Delete");
-        alert.setContentText("Are you sure you want to delete this customer?");
+        int selectedIndex = tvCustomers.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Customer");
+            alert.setHeaderText("Delete");
+            alert.setContentText("Are you sure you want to delete this customer?");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
-            Customer customer = tvCustomers.getSelectionModel().getSelectedItem();
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM `customers` WHERE `CustomerId` = "+customer.getCustomerId());
-            stmt.execute();
-            displayCounts();
-            getCustomers();
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+                Customer customer = tvCustomers.getSelectionModel().getSelectedItem();
+                PreparedStatement stmt = conn.prepareStatement("DELETE FROM `customers` WHERE `CustomerId` = "+customer.getCustomerId());
+                stmt.execute();
+                displayCounts();
+                getCustomers();
 
-        } else {
+            } else {
 
+            }
         }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
+
+
     }
 
     @FXML
@@ -508,11 +519,21 @@ public class MainController {
 
     @FXML
     void btnEditCustomers_OnClick(ActionEvent event) {
-        try {
-            onCustomerOpenDialog(tvCustomers.getSelectionModel().getSelectedIndex());
-        } catch (IOException e) {
-            e.printStackTrace();
+        int selectedIndex = tvCustomers.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >=0){
+            try {
+                onCustomerOpenDialog(tvCustomers.getSelectionModel().getSelectedIndex());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("No rows selected!");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML

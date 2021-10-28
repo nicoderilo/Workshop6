@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="482.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.InvoiceViewController">
+<AnchorPane prefHeight="482.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workshop6.InvoiceViewController">
    <children>
       <AnchorPane layoutY="59.0" prefHeight="410.0" prefWidth="935.0">
          <children>
@@ -110,9 +110,17 @@
             </VBox>
             <VBox alignment="TOP_CENTER" layoutX="532.0" prefHeight="424.0" prefWidth="400.0" style="-fx-background-color: #e6ebed;">
                <children>
+                  <Label text="Email Format" textFill="#000368">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <TextArea fx:id="taAll" editable="false" prefHeight="221.0" prefWidth="360.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #bebebe;" VBox.vgrow="NEVER">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -120,15 +128,15 @@
                   </TextArea>
                   <HBox alignment="CENTER" prefHeight="59.0" prefWidth="400.0">
                      <children>
-                        <Button fx:id="btnSendEmail" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnSendEmail_Onclick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #0086b3;" text="SEND" textFill="WHITE">
+                        <Button fx:id="btnSendEmail" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnSendEmail_Onclick" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #0086b3;" text="SEND EMAIL" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="20.0" />
+                              <Insets left="90.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btnPrint" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnPrint_OnClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #0086b3;" text="PRINT" textFill="WHITE">
+                        <Button fx:id="btnPrint" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnPrint_OnClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #0086b3;" text="PRINT" textFill="WHITE" visible="false">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
