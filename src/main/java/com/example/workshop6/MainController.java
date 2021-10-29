@@ -244,6 +244,10 @@ public class MainController {
     @FXML // fx:id="colBasePriceInv"
     private TableColumn<Invoices_View, String> colBasePriceInv; // Value injected by FXMLLoader
 
+    /**
+     * Author: Stan Abana
+     * Add booking on button click
+     */
     @FXML
     void btnAddBookings_OnClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new
@@ -350,7 +354,10 @@ public class MainController {
         LoadProducts();
     }
 
-
+    /**
+     * Author: Stan Abana
+     * Delete booking on button click
+     */
     @FXML
     void btnDeleteBookings_OnClick(ActionEvent event) throws SQLException {
         int selectedIndex = tvBookings.getSelectionModel().getSelectedIndex();
@@ -490,6 +497,10 @@ public class MainController {
 
     }
 
+    /**
+     * Author: Stan Abana
+     * Edit booking on button click
+     */
     @FXML
     void btnEditBookings_OnClick(ActionEvent event) throws IOException {
         int selectedIndex = tvBookings.getSelectionModel().getSelectedIndex();
@@ -904,6 +915,11 @@ public class MainController {
         }
     }//getCustomers - End
 
+    /**
+     * Author: Stan Abana
+     * Method that connects to the database, fetch existing bookings and displays
+     * them on a table view on application load
+     */
     private void getBookings(){
         String username = "";
         String password = "";
@@ -1042,6 +1058,10 @@ public class MainController {
 
     }
 
+    /**
+     * Author: Stan Abana
+     * Method that deletes selected record from the booking table and related table with foreign key constraints
+     */
     private void deleteBooking(int bookingId) throws SQLException  {
         String username = "";
         String password = "";

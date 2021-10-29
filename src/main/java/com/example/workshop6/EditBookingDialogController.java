@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Properties;
@@ -73,6 +74,9 @@ public class EditBookingDialogController {
     private int selectedIndex;
     private int index;
 
+    /**
+     * Code to display existing bookings in their various fields when Edit button is clicked on the Main Controller
+     */
     public void displayBooking(Booking b, int selectedIndex) {
         tfBookingId.setEditable(false);  //Booking Id cannot be edited
         mode = "update";
@@ -81,16 +85,13 @@ public class EditBookingDialogController {
         this.tfBookingDate.setText(b.getBookingDate());
         this.tfBookingNo.setText(b.getBookingNo());
         this.tfTravelerCount.setText(b.getTravelerCount() + "");
-        //getTripTypeId();
+
         getPackageId();
-        //getCustomerId();
-        //this.cbCustomerId2.getSelectionModel().isSelected(""b.gCustomerId()"");
-        //this.cbTripTypeId.getSelectionModel().isSelected(b.getTripTypeId());
+
         cbCustomerId2.setVisible(false);
         this.tfCustID.setText(b.getCustomerId() + "");
         cbTripTypeId.setVisible(false);
         this.tfTriptypeId.setText(b.getTripTypeId());
-        //cbPackageId2.setVisible(false);
         this.cbPackageId2.setValue(b.getPackageId());
         index = selectedIndex;
     }
@@ -122,6 +123,9 @@ public class EditBookingDialogController {
         });
     }
 
+    /**
+     * Code to get the trip type id from Booking class and set the values in cbTripTypeId combo box
+     */
     private void getTripTypeId() {
         String username = "";
         String password ="";
@@ -155,7 +159,9 @@ public class EditBookingDialogController {
         }
     }
 
-    //get package id
+    /**
+     * Code to get the package id from package class and set the values in cbPackageId2 combo box
+     */
     private void getPackageId() {
         String username = "";
         String password ="";
@@ -171,10 +177,10 @@ public class EditBookingDialogController {
             url = (String) p.get("URL");
         } catch (IOException e) {
             e.printStackTrace();
-        }//end
+        }
 
         try {
-            //Class.forName("com.mysql.cj.jdbc.Driver");
+
             Connection conn = DriverManager.getConnection(url, username, password);
             ResultSet rs = conn.createStatement().executeQuery("SELECT PackageId FROM Packages");
 
@@ -189,6 +195,9 @@ public class EditBookingDialogController {
         }
     }
 
+    /**
+     * Code to get the customer id from customer class and set the values in cbCustomerId2 combo box
+     */
     private void getCustomerId() {
         String username = "";
         String password ="";
@@ -204,7 +213,7 @@ public class EditBookingDialogController {
             url = (String) p.get("URL");
         } catch (IOException e) {
             e.printStackTrace();
-        }//end
+        }
 
         try {
             Connection conn = DriverManager.getConnection(url, username, password);
@@ -221,6 +230,11 @@ public class EditBookingDialogController {
         }
     }
 
+    /**
+     * Code to Save booking details on button click
+     * Establishes connection to database and inserts or updates the Bookings table according to the mode
+     * Calls the method validate() to ensure that false data is not entered into the database
+     */
     private void btnSaveClicked(MouseEvent mouseEvent) {
         boolean valid = validate();
         if (valid) {
@@ -302,22 +316,20 @@ public class EditBookingDialogController {
         }
     }
 
-        public void addBooking () {
-            mode = "insert";
-            lblBookingId.setVisible(false);
-            tfBookingId.setVisible(false);
-        }
+    /**
+     * If Add button is clicked on the Main Controller this method
+     * makes the text field and label for BookingId invisible
+     * Sets the mode to insert
+     */
+    public void addBooking () {
+        mode = "insert";
+        lblBookingId.setVisible(false);
+        tfBookingId.setVisible(false);
+    }
 
-
+    //Method that verifies valid records are entered into the table
     private boolean validate() {
         StringBuilder errors = new StringBuilder();
-
-        // Confirm mandatory fields are filled out
-//("\\d{4}-\\d{2}-\\d{2}(?:(?:\\s([0-1]\\d|[2][0-3])\\:([0-5]\\d)(?::([0-5]\\d))?)?)"))
-//        if (!(tfBookingDate.getText().matches("^\\d{4}-\\d{2}-\\d{2}$"))) {
-//            errors.append("- Please enter a valid date in the format YYYY-MM-DD\n");
-//        }
-
 
         if (tfBookingNo.getText().trim().isEmpty()) {
             errors.append("- Please enter booking number.\n");
@@ -354,20 +366,6 @@ public class EditBookingDialogController {
             }
         }
 
-
-
-//
-//        if (t.getText().trim().isEmpty()) {
-//            errors.append("- Please enter booking number.\n");
-//        }
-
-
-        /*if (tfTravelerCount.getText().trim().isEmpty() || !tfTravelerCount.getText().matches("^[1-9]\\?[0-9]+$"))
-        {
-            errors.append("- Please enter a value of 1 or more.\n");
-        }*/
-
-        // If any missing information is found, show the error messages and return false
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -380,6 +378,7 @@ public class EditBookingDialogController {
         // If there is no error
         return true;
     }
+
     /**
      * Function to check if input field is null or empty
      * @param val
