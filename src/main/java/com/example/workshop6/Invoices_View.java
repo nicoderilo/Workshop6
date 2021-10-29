@@ -1,8 +1,18 @@
+/**
+ * Author: Nicolino Derilo
+ * WHEN: October 2021
+ * WHAT: Threaded Project 6,7,8
+ */
+
 package com.example.workshop6;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
+/**
+ * This is an SQL VIEW and not a table.Sql script has been executed to mysql xampp.
+ * This Invoices_view will represent the invoices for customers.
+ *
+ */
 public class Invoices_View {
     private  SimpleStringProperty CustFirstNameInv;
     private  SimpleStringProperty CustEmailInv;

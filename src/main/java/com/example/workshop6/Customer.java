@@ -1,3 +1,9 @@
+/**
+ * Author: Nicolino Derilo
+ * WHEN: October 2021
+ * WHAT: Threaded Project 6,7,8
+ */
+
 package com.example.workshop6;
 
 import javafx.beans.property.SimpleIntegerProperty;

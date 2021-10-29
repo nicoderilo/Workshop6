@@ -1,3 +1,11 @@
+/**
+ *  TEAM MEMBERS - Group 1
+ * Nico Derilo
+ * Aidan Goguen
+ * Sai Shalini Karaikatte Venugopal
+ * Stan Abana
+ */
+
 package com.example.workshop6;
 
 import javafx.application.Application;

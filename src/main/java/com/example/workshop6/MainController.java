@@ -2,6 +2,11 @@
  * GROUP 1 JAVAFX GUI for travel agents that allows data manipultion
  * of Customers, Bookings, Packages, Products, Invoices
  * Includes feature to e-mail invoices to customers
+ * TEAM MEMBERS - Group 1
+ * Nico Derilo
+ * Aidan Goguen
+ * Sai Shalini Karaikatte Venugopal
+ * Stan Abana
  */
 
 package com.example.workshop6;
@@ -244,7 +249,7 @@ public class MainController {
     private TableColumn<Invoices_View, String> colDescriptionInv; // Value injected by FXMLLoader
 
     @FXML // fx:id="colBasePriceInv"
-    private TableColumn<Invoices_View, String> colBasePriceInv; // Value injected by FXMLLoader
+    private TableColumn<Invoices_View, String> colBasePriceInv; // Value injected by FXMLLoader //   <-- folded to make the code short. click the + to expand
 
     /**
      * Author: Stan Abana
@@ -268,6 +273,10 @@ public class MainController {
         lblBookings.setText("Bookings: " + tvBookings.getItems().size());
     }
 
+    /**
+     * Author: Nico Derilo
+     * Add Customer on button click
+     */
     @FXML
     void btnAddCustomers_Onclick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editcustomer.fxml"));
@@ -285,7 +294,12 @@ public class MainController {
         getCustomers();
     }
 
+    /**
+     * Author: Nico Derilo
+     * Opens 2nd form that shows invoice details of the customer
+     */
 
+    //VIEW INVOICES
     @FXML
     void btnAddInvoices_OnClick(ActionEvent event) throws IOException {
         int selectedIndex = tvInvoices.getSelectionModel().getSelectedIndex();
@@ -387,7 +401,10 @@ public class MainController {
         }
 
     }
-
+    /**
+     * Author: Nico Derilo
+     * Delete Customer on button click
+     */
     @FXML
     void btnDeleteCustomers_OnClick(ActionEvent event) throws SQLException {
         int selectedIndex = tvCustomers.getSelectionModel().getSelectedIndex();
@@ -530,7 +547,10 @@ public class MainController {
         }
 
     }
-
+    /**
+     * Author: Nico Derilo
+     * Calls 2nd form form in edit mode.
+     */
     @FXML
     void btnEditCustomers_OnClick(ActionEvent event) {
         int selectedIndex = tvCustomers.getSelectionModel().getSelectedIndex();
@@ -624,21 +644,16 @@ public class MainController {
         tpMain.getSelectionModel().select(tab2);
     }
     @FXML
-    void btnPackages_OnClick(ActionEvent event) {
-        tpMain.getSelectionModel().select(tab3);
-
-        //lblPackages.setText("Packages:"+tvPackages.getItems().size());
+    void btnPackages_OnClick(ActionEvent event) { tpMain.getSelectionModel().select(tab3);
     }
     @FXML
-    void btnProducts_OnClick(ActionEvent event) {
-
-        tpMain.getSelectionModel().select(tab4);
+    void btnProducts_OnClick(ActionEvent event) { tpMain.getSelectionModel().select(tab4);
     }
 
     @FXML
     void btnInvoices_OnClick(ActionEvent event) {
         tpMain.getSelectionModel().select(tab5);
-    }
+    } // <-- folded to make the code short. Click + to expand.
 
 
     private ObservableList<Customer> CustomerData = FXCollections.observableArrayList();
@@ -707,7 +722,7 @@ public class MainController {
     void btnProducts_OnExited(MouseEvent event) {
         btnProducts.setStyle("-fx-background-color:  #0086b3");
     }
-    //HOVERS EFFECTS - END
+    //HOVERS EFFECTS - END // <-- Hover button effects.Folded to make the code short. Click + to expand.
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -784,10 +799,8 @@ public class MainController {
         assert colTripStartInv != null : "fx:id=\"colTripStartInv\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colTripEndInv != null : "fx:id=\"colTripEndInv\" was not injected: check your FXML file 'main-view.fxml'.";
         assert colDescriptionInv != null : "fx:id=\"colDescriptionInv\" was not injected: check your FXML file 'main-view.fxml'.";
-        assert colBasePriceInv != null : "fx:id=\"colBasePriceInv\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert colBasePriceInv != null : "fx:id=\"colBasePriceInv\" was not injected: check your FXML file 'main-view.fxml'.";  //   <-- folded to make the code short. click the + to expand
 
-
-        //enablechanges();
         displayCounts();
         getCustomers();
         getBookings();
@@ -797,7 +810,12 @@ public class MainController {
 
     }
 
-
+    /**
+     * Author: Nico derilo
+     * gets the selected value from customers tableview and
+     * displays Customer data in EditCustomerController.
+     * Change text to Update Customer
+     */
 
     private void onCustomerOpenDialog(int selectedIndex) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editcustomer.fxml"));
@@ -812,6 +830,7 @@ public class MainController {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
     private void LoadProducts() {
         String username = "";
         String password = "";
@@ -873,7 +892,11 @@ public class MainController {
     }
 
 
-    //Customer Data
+    /**
+     * Author: Nico Derilo
+     * Method that connects to the database, fetch existing Customers and displays
+     * them on a table view on application load
+     */
     private void getCustomers() {
         String username = "";
         String password = "";
@@ -1100,7 +1123,10 @@ public class MainController {
         }
 
     }
-
+    /**
+     * Author: Nico Derilo
+     * Calls Invoice_View VIEW that I created from mysql database and display it to textview
+     */
     private void getInvoices_View() {
         String username = "";
         String password = "";
@@ -1139,7 +1165,9 @@ public class MainController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * this function will COUNT total number of rows for tables customer, bookings,packages, invoices.
+     */
     private void displayCounts() {
         try {
             lblCustomers.setText( "Customers  "+ Integer.toString((MyFunction.countData("customers"))));

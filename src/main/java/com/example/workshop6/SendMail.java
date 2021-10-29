@@ -1,3 +1,9 @@
+/**
+ * Author: Nicolino Derilo
+ * WHEN: October 2021
+ * WHAT: Threaded Project 6,7,8
+ */
+
 package com.example.workshop6;
 
 import javafx.scene.control.Alert;
@@ -11,6 +17,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+/**
+* This function will capture customer's email,invoice,total amount to pay and send data using google smtp email.
+* */
 public class SendMail {
     //dummy email only - enable less secure apps to receive emails
     String user = "travelagencygroup1@gmail.com";

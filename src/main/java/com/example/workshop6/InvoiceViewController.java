@@ -1,5 +1,7 @@
 /**
- * Sample Skeleton for 'invoice-view.fxml' Controller Class
+ * Author: Nicolino Derilo
+ * WHEN: October 2021
+ * WHAT: Threaded Project 6,7,8
  */
 
 package com.example.workshop6;
@@ -70,7 +72,6 @@ public class InvoiceViewController {
     }
     @FXML
     void btnSendEmail_Onclick(ActionEvent event) {
-       // SendMail SE = new SendMail(tfCustEmailInv.getText(), tfBookingNoInv.getText(),tfBasePriceInv.getText());
         SendMail SE = new SendMail(tfCustEmailInv.getText(), ( "Your invoice No: INV"+ tfBookingNoInv.getText()),taAll.getText());
     }
     public ObservableList<Invoices_View> data = FXCollections.observableArrayList();

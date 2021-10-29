@@ -1,11 +1,12 @@
 /**
- * Sample Skeleton for 'editcustomer.fxml' Controller Class
+ * Author: Nicolino Derilo
+ * WHEN: October 2021
+ * WHAT: Threaded Project 6,7,8
  */
 
 package com.example.workshop6;
 
-//import java.awt.*;
-//import java.awt.Label;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -124,6 +125,7 @@ public class EditCustomerController {
 
         tfCustFirstName.requestFocus();
 
+
         btnSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -137,7 +139,10 @@ public class EditCustomerController {
 
 
     }
-
+    /**
+     * Code to Save customer details on button click
+     * Establishes connection to database and inserts or updates the Customers table according to the mode
+     */
     private void btnSaveClicked(MouseEvent mouseEvent) throws SQLException, ParseException {
         boolean valid = validateCustomers();
         if (valid){
@@ -146,7 +151,7 @@ public class EditCustomerController {
             if (lblCustomers.getText() == "Update Customer")
             {
                 try {
-                    //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+
                     PreparedStatement stmt = conn.prepareStatement("UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=?,`AgentId`=? WHERE `CustomerId`=?");
                     stmt.setString(1, tfCustFirstName.getText());
                     stmt.setString(2, tfCustLastName.getText());
@@ -158,7 +163,6 @@ public class EditCustomerController {
                     stmt.setString(8, tfCustHomePhone.getText());
                     stmt.setString(9, tfCustBusPhone.getText());
                     stmt.setString(10, tfCustEmail.getText());
-                    //stmt.setInt(11, Integer.parseInt(tfAgentId.getText()));
                     stmt.setInt(11, Integer.parseInt(tfAgentId.getText()));
                     stmt.setInt(12, Integer.parseInt(tfCustomerId.getText()));
                     int numRows = stmt.executeUpdate();
@@ -229,6 +233,9 @@ public class EditCustomerController {
         tfAgentId.setText(c.getAgentId() + "");
     }
 
+    /**
+     * Method validate() that verifies that valid input is entered into the database
+     */
     public boolean validateCustomers() throws ParseException {
 
         StringBuilder errors = new StringBuilder();
@@ -259,11 +266,7 @@ public class EditCustomerController {
 
         if (tfCustPostal.getText().trim().isEmpty()) {
             errors.append("- Please enter a Postal Code.\n");
-        } //else {
-            //if (!(tfCustPostal.getText().matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$"))) {
-               // errors.append("- Please enter a valid Postal code\n");
-            //}
-        //}
+        }
 
         if (tfCustHomePhone.getText().trim().isEmpty()) {
             errors.append("- Please enter a Phone Number.\n");
@@ -304,20 +307,6 @@ public class EditCustomerController {
             errors.append("- Agent Id does not exist.\n");
         }
 
-
-        //--
-//        if(isEmpty(tfAgentId.getText())) {
-//            tfAgentId.setText(null);
-//        }
-//        else if (!tfAgentId.getText().matches("[0-9]\\d*(\\.\\d+)?"))
-//        {
-//            errors.append("- Please enter Agency Commission as an Integer or Decimal.\n");
-//        }
-
-
-
-        //--
-
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -331,6 +320,9 @@ public class EditCustomerController {
         return true;
     }
 
+    /**
+     * Function to check if input field is null or empty - got from Shalini's function
+     */
     boolean isEmpty(String val) {
         if (val == null || val.isEmpty()) {
             return true;
