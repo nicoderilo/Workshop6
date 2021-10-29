@@ -295,6 +295,28 @@
                   <Insets top="11.0" />
                </VBox.margin>
             </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="28.0" prefWidth="18.0" text="*" textFill="#d71010">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="28.0" prefWidth="18.0" text="*" textFill="#d71010">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="90.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
    </children>

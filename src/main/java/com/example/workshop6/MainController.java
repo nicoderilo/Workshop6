@@ -276,7 +276,7 @@ public class MainController {
         stage.close();
 
         displayCounts();
-        //getCustomers();
+        getCustomers();
     }
 
 
@@ -387,6 +387,7 @@ public class MainController {
             alert.setTitle("Delete Customer");
             alert.setHeaderText("Delete");
             alert.setContentText("Are you sure you want to delete this customer?");
+            displayCounts();
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
@@ -407,7 +408,7 @@ public class MainController {
             alert.setHeaderText("No rows selected!");
             alert.showAndWait();
         }
-
+        displayCounts();
 
     }
 

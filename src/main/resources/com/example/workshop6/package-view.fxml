@@ -66,7 +66,7 @@
                   </Button>
                </children>
             </HBox>
-            <VBox layoutX="64.0" layoutY="100.0" prefHeight="240.0" prefWidth="234.0">
+            <VBox layoutX="64.0" layoutY="100.0" prefHeight="240.0" prefWidth="215.0">
                <children>
                   <Label fx:id="lblPkgName" prefHeight="18.0" prefWidth="295.0" text="PackageName">
                      <font>
@@ -142,7 +142,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfPkgEndDate">
+                  <TextField fx:id="tfPkgEndDate" promptText="YYYY-MM-DD">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -186,6 +186,26 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" layoutX="269.0" layoutY="104.0" prefHeight="234.0" prefWidth="28.0">
+               <children>
+                  <Label text="*" textFill="#f50000">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label text="*" textFill="#f50000">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="130.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
          </children>

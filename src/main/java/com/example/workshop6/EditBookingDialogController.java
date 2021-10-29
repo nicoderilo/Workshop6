@@ -285,6 +285,16 @@ public class EditBookingDialogController {
                     Stage stage = (Stage) btnSave.getScene().getWindow();
                     stage.close();
 
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Add Customer");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Added successfully");
+
+                    alert.showAndWait();
+                    Node source = (Node) mouseEvent.getSource();
+                    stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+
                 }
             } catch (SQLException var7) {
                 var7.printStackTrace();

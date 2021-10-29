@@ -193,7 +193,7 @@ public class EditCustomerController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Add Customer");
                 alert.setHeaderText(null);
-                alert.setContentText("Add Customer '"+ tfCustFirstName.getText() +"' successful");
+                alert.setContentText("Customer '"+ tfCustFirstName.getText() +"' added successfully");
 
                 alert.showAndWait();
                 Node source = (Node) mouseEvent.getSource();
@@ -266,17 +266,22 @@ public class EditCustomerController {
         //}
 
         if (tfCustHomePhone.getText().trim().isEmpty()) {
-            errors.append("- Please enter a Customer name.\n");
+            errors.append("- Please enter a Phone Number.\n");
         } else {
             if (!(tfCustHomePhone.getText().matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$"))) {
                 errors.append("- Please enter valid phone number\n");
             }
         }
-        //Business phone - Allow null
-        if (!tfCustBusPhone.getText().matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$"))
-        {
-            errors.append("- Please enter valid phone number.\n");
+        if (tfCustBusPhone.getText().trim().isEmpty()) {
+            tfCustBusPhone.setText("");
+        } else {
+            //Business phone - Allow null
+            if (!tfCustBusPhone.getText().matches("^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$"))
+            {
+                errors.append("- Please enter valid phone number.\n");
+            }
         }
+
 
         //EMAIL - Allow null
         if (tfCustEmail.getText().trim().isEmpty()) {
@@ -316,7 +321,7 @@ public class EditCustomerController {
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Required Fields Empty");
+            alert.setHeaderText("Required Fields");
             alert.setContentText(errors.toString());
 
             alert.showAndWait();
