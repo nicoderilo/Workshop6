@@ -134,8 +134,10 @@ public class PackageViewController {
                 e.printStackTrace();
             }
             try {
+                //database connection
                 Connection conn = DriverManager.getConnection(url, username, password);
                 if (mode == "update") {
+                    //update row in database
                     PreparedStatement stmt = conn.prepareStatement("UPDATE `Packages` SET `PkgName`=?,`PkgStartDate`=?,`PkgEndDate`=?,`PkgDesc`=?,`PkgBasePrice`=?,`PkgAgencyCommission`=? WHERE `PackageId`=?");
                     stmt.setString(1, this.tfPkgName.getText());
                     stmt.setString(2, this.tfPkgStartDate.getText());
@@ -153,6 +155,7 @@ public class PackageViewController {
                     Stage stage = (Stage) btnSave.getScene().getWindow();
                     stage.close();
                 } else {
+                    //insert into Database
                     PreparedStatement stmt = conn.prepareStatement("INSERT INTO Packages (PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgAgencyCommission)" +
                             "VALUES (?,?,?,?,?,?)");
                     stmt.setString(1, this.tfPkgName.getText());

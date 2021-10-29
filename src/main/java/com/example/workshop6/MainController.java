@@ -1,5 +1,7 @@
 /**
- * Sample Skeleton for 'main-view.fxml' Controller Class
+ * GROUP 1 JAVAFX GUI for travel agents that allows data manipultion
+ * of Customers, Bookings, Packages, Products, Invoices
+ * Includes feature to e-mail invoices to customers
  */
 
 package com.example.workshop6;
